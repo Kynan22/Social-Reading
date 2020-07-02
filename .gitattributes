@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Show Dart Language as Main
+* linguist-vendored
+*.dart linguist-vendored=false
