@@ -92,41 +92,221 @@ class PopupWidgets extends StatefulWidget {
     );
   }
 
-  Future<Widget> getSearchList(context, value) async {
-    List<String> url = await Api().fetchBooks(value);
-    List<String> isbn = await Api().fetchBookIsbn(value);
-
-    List<Container> list=[];
-    for(var x = 0; x < url.length; x++){
-      print('popup: ' + url[x].toString());
-      list.add(Container(
-        color: lightGrey,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+  Widget addShelfWidget(context, list){
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: new BoxDecoration(color: lightGrey, borderRadius:new BorderRadius.circular(25.0),),
+        height: 80,
+        width: 200,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            new Container(
-              height: 100,
-              padding: EdgeInsets.all(5),
-              child: Image.network(url[x], fit: BoxFit.fitHeight,),
-            ),
-            //onTap: () => Database().addBook(context, isbn[x])),
-            new GestureDetector(
-              child: Icon(
-                Icons.add_circle,
-                color: darkGrey,
-                size: 30,
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: TextFormField(
+                decoration: new InputDecoration(
+                  labelText: "Enter Shelf Name",
+                  border: new OutlineInputBorder(
+                    borderRadius: new BorderRadius.circular(25.0),
+                    borderSide: new BorderSide(),
+                  ),
+                  
+                ),
+                validator: (value) {
+                  if(value.length==0) {
+                    return "Shelf name cannot be empty";
+                  }else{
+                    return null;
+                  }
+                },
+                onFieldSubmitted: (String value) async{
+                  Navigator.pop(context);
+                  list.add(Container(height: 100, width: 100, child:Text(value)));
+                  Database().addShelf(context, value);
+                }
               ),
-              onTap: () => Database().addBook(context, isbn[x]),
             ),
           ],
-        ),
-      ));
+        )
+      ),
+    );
+  }
+
+  Future<Widget> getSearchList(context, value) async {
+    Book books = await Api().fetchBooks(value);
+    
+    // var screenWidth = MediaQuery.of(context).size.width;
+    // var screenHeight = MediaQuery.of(context).size.height;
+
+    List<Container> list=[];
+    var isbn;
+    for(var item in books.items){
+      if(item.volumeInfo.industryIdentifiers != null &&
+        item.volumeInfo.imageLinks != null &&
+        item.volumeInfo.title != null &&
+        item.volumeInfo.authors != null &&
+        item.volumeInfo.publishedDate != null){
+          if(item.volumeInfo.industryIdentifiers.length > 1){
+            if(item.volumeInfo.industryIdentifiers[0].toJson()['identifier'].toString().length == 13){
+              list.add(Container(
+
+                color: lightGrey,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    new Container(
+                      height: 120,
+                      width: 100,
+                      padding: EdgeInsets.only(top: 5, bottom: 5),
+                      child: Image.network(item.volumeInfo.imageLinks.toJson()['thumbnail'].toString(), fit: BoxFit.fitHeight,),
+                    ),
+                    //onTap: () => Database().addBook(context, isbn[x])),
+
+                    new Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(item.volumeInfo.toJson()['title'].toString(), style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                        Text(item.volumeInfo.toJson()['authors'][0].toString(), style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400)),
+                        Text("Published " + item.volumeInfo.toJson()['publishedDate'].toString(), style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400)),
+                      ],
+                    ),
+                    new GestureDetector(
+                      child: Icon(
+                        Icons.add_circle,
+                        color: darkGrey,
+                        size: 30,
+                      ),
+                      onTap: () => Database().addBook(context, item.volumeInfo.industryIdentifiers[0].toJson()['identifier'].toString()),
+                    ),
+                  ],
+                ),
+              ));            
+            }
+            else{
+              list.add(Container(
+                
+                color: lightGrey,
+                child: Flexible(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      new Container(
+                        height: 120,
+                        width: 100,
+                        padding: EdgeInsets.only(top: 5, bottom: 5),
+                        child: Image.network(item.volumeInfo.imageLinks.toJson()['thumbnail'].toString(), fit: BoxFit.fitHeight,),
+                      ),
+                      //onTap: () => Database().addBook(context, isbn[x])),
+
+                      new Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child:  Text(
+                              item.volumeInfo.toJson()['title'].toString(),
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500
+                              )
+                            ),
+
+
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child:  Text(
+                              item.volumeInfo.toJson()['authors'][0].toString(), 
+                              style: TextStyle(
+                                fontSize: 10, 
+                                fontWeight: FontWeight.w400
+                              )
+                            ),
+
+
+                          ),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "Published " + item.volumeInfo.toJson()['publishedDate'].toString(), 
+                              style: TextStyle(
+                                fontSize: 10, 
+                                fontWeight: FontWeight.w400
+                              )
+                            ),
+
+                          ),
+                          // Text(item.volumeInfo.toJson()['title'].toString(), style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)),
+                          // Text(item.volumeInfo.toJson()['authors'][0].toString(), style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400)),
+                          // Text("Published " + item.volumeInfo.toJson()['publishedDate'].toString(), style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400)),
+                        ],
+                      ),
+                      new GestureDetector(
+                        child: Icon(
+                          Icons.add_circle,
+                          color: darkGrey,
+                          size: 30,
+                        ),
+                        onTap: () => Database().addBook(context, item.volumeInfo.industryIdentifiers[1].toJson()['identifier'].toString()),
+                      ),
+                    ],
+                  ),
+                ),
+              ));
+            }
+          }
+
+        }
+
+
     }
+
+    // for(var x = 0; x < url.length; x++){
+    //   print('popup: ' + url[x].toString());
+    //   list.add(Container(
+    //     color: lightGrey,
+    //     child: Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+    //       children: <Widget>[
+    //         new Container(
+    //           height: 100,
+    //           padding: EdgeInsets.all(5),
+    //           child: Image.network(url[x], fit: BoxFit.fitHeight,),
+    //         ),
+    //         //onTap: () => Database().addBook(context, isbn[x])),
+
+    //         new Column(
+    //           children: <Widget>[
+    //             Text();
+    //             Text();
+    //           ],
+    //         )
+    //         new GestureDetector(
+    //           child: Icon(
+    //             Icons.add_circle,
+    //             color: darkGrey,
+    //             size: 30,
+    //           ),
+    //           onTap: () => Database().addBook(context, isbn[x]),
+    //         ),
+    //       ],
+    //     ),
+    //   ));
+    // }
     
     return ListView(children: list,);
   }
 
   Dialog showSearchList(context, value){
+    
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
+
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -153,7 +333,7 @@ class PopupWidgets extends StatefulWidget {
                   }
                 },
                 onFieldSubmitted: (String value) async{
-                  //Navigator.push(context, MaterialPageRoute(builder: (context) => showSearchList(context, value)));
+                  Navigator.pop(context);
                   showDialog(
                   context: context,
                   builder: (BuildContext context) => showSearchList(context, value));
@@ -171,7 +351,7 @@ class PopupWidgets extends StatefulWidget {
                     return Text("${snapshot.error}");
                   }
                   else{
-                    return Container(height: 30, width: 30, child:CircularProgressIndicator());
+                    return Text("Loading...");//Container(height: 30, width: 30, child:CircularProgressIndicator());
                   }
                 },        
               ),
@@ -322,73 +502,27 @@ class PopupWidgets extends StatefulWidget {
     );
   }
 
-  // Widget bookWidget(context){  
-  //   return Dialog(    
-  //     child: Container(
-  //       height: 300.0,
-  //       width: 360.0,
-  //       decoration: BoxDecoration(
-  //         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30)),
-  //       ),
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.end,
-  //         children: <Widget>[
-  //           Container(
-  //             width: 150,
-  //             height: 150,
-  //             child: FutureBuilder<StreamBuilder>(
-  //               future: Database().getUserReading(),
-  //               builder: (context, snapshot) {
-  //                 if (snapshot.hasData) {
-  //                   return snapshot.data;
-  //                 } else if (snapshot.hasError) {
-  //                   return Text("${snapshot.error}");
-  //                 }
-  //                 else{
-  //                   return CircularProgressIndicator();
-  //                 }
-  //               },        
-  //             ),
-  //           ),
-  //           Container(
-  //             padding: EdgeInsets.all(10),
-  //             height: 50, 
-  //             width: 110,
-  //             child: FutureBuilder<StreamBuilder>(
-  //               future: Database().getAmazonLink(),
-  //               builder: (context, snapshot) {
-  //                 if (snapshot.hasData) {
-  //                   return snapshot.data;
-  //                 } else if (snapshot.hasError) {
-  //                   return Text("${snapshot.error}");
-  //                 }
-  //                 else{
-  //                   return CircularProgressIndicator();
-  //                 }
-  //               },        
-  //             )
-  //           ),        
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
   Widget bookWidget(context, collection, isbn){  
+    var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
     return Dialog(  
+      backgroundColor: Colors.transparent,
       child: Container(
-        height: 300, 
+        height: screenHeight*0.5,
+        //width: screenWidth, 
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30)),
+          color: lightGrey,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            Row(
               children: <Widget>[
                 Container(
-                  width: 150,
-                  height: 150,
+                  width: screenWidth * 0.4,
+                  height: screenHeight * 0.25,
                   child: FutureBuilder<StreamBuilder>(
                     future: Database().getUserBook(collection, isbn),
                     builder: (context, snapshot) {
@@ -404,11 +538,9 @@ class PopupWidgets extends StatefulWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
-                  height: 50, 
-                  width: 110,
+                  width: screenWidth * 0.3,
                   child: FutureBuilder<StreamBuilder>(
-                    future: Database().getAmazonLink(),
+                    future: Database().getBookInfo(collection, isbn),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return snapshot.data;
@@ -418,40 +550,56 @@ class PopupWidgets extends StatefulWidget {
                       else{
                         return CircularProgressIndicator();
                       }
-                    },        
+                    }, 
                   )
-                ),  
-                      
+                ),
               ],
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 100,
-                  height: 150,
-                  child: FutureBuilder<StreamBuilder>(
-                    future: Database().getProgress(),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return snapshot.data;
-                      } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
-                      }
-                      else{
-                        return CircularProgressIndicator();
-                      }
-                    },        
+            Container(
+              height: 80,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 50, 
+                    width: 80,
+                    child: FutureBuilder<StreamBuilder>(
+                      future: Database().getAmazonLink(collection, isbn),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return snapshot.data;
+                        } else if (snapshot.hasError) {
+                          return Text("${snapshot.error}");
+                        }
+                        else{
+                          return CircularProgressIndicator();
+                        }
+                      },        
+                    )
                   ),
-                ),                     
-              ],
-            ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 50, 
+                    width: 80,
+                    child: RaisedButton(
+                      onPressed: () => Database().removeBook(context, collection, isbn),
+                      padding: EdgeInsets.all(5),
+                      child: Text("Remove", style: TextStyle(fontSize: 12, color: darkGrey)),
+                    )
+                  ),
+                ],
+              ), 
+            ), 
           ],
         )
       ),
     );
   }
+
+
+
 }
 
 class _PopupWidgets extends State<PopupWidgets>{

@@ -12,8 +12,8 @@
 12         to allow setting breakpoints, to provide hot reload, etc.
 13    -->
 14    <uses-permission android:name="android.permission.INTERNET" />
-14-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\debug\AndroidManifest.xml:6:5-66
-14-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\debug\AndroidManifest.xml:6:22-64
+14-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\debug\AndroidManifest.xml:6:5-66
+14-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\debug\AndroidManifest.xml:6:22-64
 15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 15-->[com.google.android.gms:play-services-measurement:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\a2d3f38d709f8b9f54c2677fdca8f29a\play-services-measurement-17.2.2\AndroidManifest.xml:24:5-79
 15-->[com.google.android.gms:play-services-measurement:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\a2d3f38d709f8b9f54c2677fdca8f29a\play-services-measurement-17.2.2\AndroidManifest.xml:24:22-76
@@ -34,30 +34,30 @@
 24         FlutterApplication and put your custom class here.
 25    -->
 26    <application
-26-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:8:5-46:19
+26-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:8:5-46:19
 27        android:name="io.flutter.app.FlutterApplication"
-27-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:9:9-57
+27-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:9:9-57
 28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 28-->[androidx.core:core:1.1.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\3aaf6e5219b7f981ec263df919098c6f\core-1.1.0\AndroidManifest.xml:24:18-86
 29        android:debuggable="true"
 30        android:icon="@mipmap/ic_launcher"
-30-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:11:9-43
+30-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:11:9-43
 31        android:label="book_app" >
-31-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:10:9-33
+31-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:10:9-33
 32        <activity
-32-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:12:9-40:20
+32-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:12:9-40:20
 33            android:name="com.example.book_app.MainActivity"
-33-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:13:13-41
+33-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:13:13-41
 34            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-34-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:16:13-163
+34-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:16:13-163
 35            android:hardwareAccelerated="true"
-35-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:17:13-47
+35-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:17:13-47
 36            android:launchMode="singleTop"
-36-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:14:13-43
+36-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:14:13-43
 37            android:theme="@style/LaunchTheme"
-37-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:15:13-47
+37-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:15:13-47
 38            android:windowSoftInputMode="adjustResize" >
-38-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:18:13-55
+38-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:18:13-55
 39
 40            <!--
 41                 Specifies an Android theme to apply to this Activity as soon as
@@ -66,11 +66,11 @@
 44                 to determine the Window background behind the Flutter UI.
 45            -->
 46            <meta-data
-46-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:23:13-26:17
+46-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:23:13-26:17
 47                android:name="io.flutter.embedding.android.NormalTheme"
-47-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:24:15-70
+47-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:24:15-70
 48                android:resource="@style/NormalTheme" />
-48-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:25:15-52
+48-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:25:15-52
 49            <!--
 50                 Displays an Android View that continues showing the launch screen
 51                 Drawable until Flutter paints its first frame, then this splash
@@ -79,21 +79,21 @@
 54                 Flutter's first frame.
 55            -->
 56            <meta-data
-56-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:32:13-35:17
+56-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:32:13-35:17
 57                android:name="io.flutter.embedding.android.SplashScreenDrawable"
-57-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:33:15-79
+57-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:33:15-79
 58                android:resource="@drawable/launch_background" />
-58-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:34:15-61
+58-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:34:15-61
 59
 60            <intent-filter>
-60-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:36:13-39:29
+60-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:36:13-39:29
 61                <action android:name="android.intent.action.MAIN" />
-61-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:37:17-68
-61-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:37:25-66
+61-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:37:17-68
+61-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:37:25-66
 62
 63                <category android:name="android.intent.category.LAUNCHER" />
-63-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:38:17-76
-63-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:38:27-74
+63-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:38:17-76
+63-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:38:27-74
 64            </intent-filter>
 65        </activity>
 66        <!--
@@ -101,38 +101,38 @@
 68             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
 69        -->
 70        <meta-data
-70-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:43:9-45:33
+70-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:43:9-45:33
 71            android:name="flutterEmbedding"
-71-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:44:13-44
+71-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:44:13-44
 72            android:value="2" />
-72-->E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\android\app\src\main\AndroidManifest.xml:45:13-30
+72-->C:\Users\kynan\Documents\Flutter\Projects\BookApp\android\app\src\main\AndroidManifest.xml:45:13-30
 73
 74        <service
-74-->[:firebase_auth] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
+74-->[:firebase_auth] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-12:19
 75            android:name="com.google.firebase.components.ComponentDiscoveryService"
-75-->[:firebase_auth] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
+75-->[:firebase_auth] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:8:18-89
 76            android:directBootAware="true"
-76-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\9e24f5b5b8c9a8452a37368abab50e06\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
+76-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f7cd7620e2e083b311a42f6fc26535cc\jetified-firebase-common-19.3.0\AndroidManifest.xml:34:13-43
 77            android:exported="false" >
 77-->[com.google.android.gms:play-services-measurement-api:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\ca912bff2260618b5b638fe661521702\play-services-measurement-api-17.2.2\AndroidManifest.xml:29:13-37
 78            <meta-data
-78-->[:firebase_auth] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+78-->[:firebase_auth] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 79                android:name="com.google.firebase.components:io.flutter.plugins.firebaseauth.FlutterFirebaseAppRegistrar"
-79-->[:firebase_auth] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
+79-->[:firebase_auth] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-122
 80                android:value="com.google.firebase.components.ComponentRegistrar" />
-80-->[:firebase_auth] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+80-->[:firebase_auth] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_auth\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 81            <meta-data
-81-->[:firebase_database] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+81-->[:firebase_database] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 82                android:name="com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar"
-82-->[:firebase_database] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-127
+82-->[:firebase_database] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-127
 83                android:value="com.google.firebase.components.ComponentRegistrar" />
-83-->[:firebase_database] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+83-->[:firebase_database] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_database\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 84            <meta-data
-84-->[:firebase_core] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
+84-->[:firebase_core] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-11:85
 85                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseAppRegistrar"
-85-->[:firebase_core] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
+85-->[:firebase_core] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:10:17-123
 86                android:value="com.google.firebase.components.ComponentRegistrar" />
-86-->[:firebase_core] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
+86-->[:firebase_core] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\firebase_core\intermediates\library_manifest\debug\AndroidManifest.xml:11:17-82
 87            <meta-data
 87-->[com.google.android.gms:play-services-measurement-api:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\ca912bff2260618b5b638fe661521702\play-services-measurement-api-17.2.2\AndroidManifest.xml:30:13-32:85
 88                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
@@ -140,23 +140,23 @@
 89                android:value="com.google.firebase.components.ComponentRegistrar" />
 89-->[com.google.android.gms:play-services-measurement-api:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\ca912bff2260618b5b638fe661521702\play-services-measurement-api-17.2.2\AndroidManifest.xml:32:17-82
 90            <meta-data
-90-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:36:13-38:85
+90-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:36:13-38:85
 91                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-91-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:37:17-109
+91-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:37:17-109
 92                android:value="com.google.firebase.components.ComponentRegistrar" />
-92-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:38:17-82
+92-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:38:17-82
 93            <meta-data
-93-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dc1368d6a8de6cc367a466276dfe8447\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:18:13-20:85
+93-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\85d470c3f31fa3f484eb08260a5f5502\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:18:13-20:85
 94                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-94-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dc1368d6a8de6cc367a466276dfe8447\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:19:17-111
+94-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\85d470c3f31fa3f484eb08260a5f5502\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:19:17-111
 95                android:value="com.google.firebase.components.ComponentRegistrar" />
-95-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dc1368d6a8de6cc367a466276dfe8447\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:20:17-82
+95-->[com.google.firebase:firebase-firestore:19.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\85d470c3f31fa3f484eb08260a5f5502\jetified-firebase-firestore-19.0.0\AndroidManifest.xml:20:17-82
 96            <meta-data
-96-->[com.google.firebase:firebase-database:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d5700217cd1d63e8d7738ce05dfa7258\jetified-firebase-database-17.0.0\AndroidManifest.xml:30:13-32:85
+96-->[com.google.firebase:firebase-database:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\60a10d7ad86c31880ad500eaa9bda2d5\jetified-firebase-database-17.0.0\AndroidManifest.xml:30:13-32:85
 97                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
-97-->[com.google.firebase:firebase-database:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d5700217cd1d63e8d7738ce05dfa7258\jetified-firebase-database-17.0.0\AndroidManifest.xml:31:17-109
+97-->[com.google.firebase:firebase-database:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\60a10d7ad86c31880ad500eaa9bda2d5\jetified-firebase-database-17.0.0\AndroidManifest.xml:31:17-109
 98                android:value="com.google.firebase.components.ComponentRegistrar" />
-98-->[com.google.firebase:firebase-database:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d5700217cd1d63e8d7738ce05dfa7258\jetified-firebase-database-17.0.0\AndroidManifest.xml:32:17-82
+98-->[com.google.firebase:firebase-database:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\60a10d7ad86c31880ad500eaa9bda2d5\jetified-firebase-database-17.0.0\AndroidManifest.xml:32:17-82
 99            <meta-data
 99-->[com.google.firebase:firebase-iid:20.0.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f26cdfb5f8d69cbc9663543f3ec1de65\firebase-iid-20.0.2\AndroidManifest.xml:32:13-34:85
 100                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
@@ -166,13 +166,13 @@
 102        </service>
 103
 104        <activity
-104-->[:url_launcher] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
+104-->[:url_launcher] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:8:9-11:74
 105            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
-105-->[:url_launcher] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
+105-->[:url_launcher] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:9:13-74
 106            android:exported="false"
-106-->[:url_launcher] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
+106-->[:url_launcher] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:10:13-37
 107            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-107-->[:url_launcher] E:\Coding\Projects\VisualStudioCode\Flutter\FlutterBookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
+107-->[:url_launcher] C:\Users\kynan\Documents\Flutter\Projects\BookApp\build\url_launcher\intermediates\library_manifest\debug\AndroidManifest.xml:11:13-71
 108
 109        <receiver
 109-->[com.google.android.gms:play-services-measurement:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\a2d3f38d709f8b9f54c2677fdca8f29a\play-services-measurement-17.2.2\AndroidManifest.xml:29:9-33:20
@@ -221,19 +221,19 @@
 132-->[com.google.android.gms:play-services-measurement:17.2.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\a2d3f38d709f8b9f54c2677fdca8f29a\play-services-measurement-17.2.2\AndroidManifest.xml:52:13-69
 133
 134        <activity
-134-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:24:9-31:50
+134-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:24:9-31:50
 135            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
-135-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:25:13-85
+135-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:25:13-85
 136            android:excludeFromRecents="true"
-136-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:26:13-46
+136-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:26:13-46
 137            android:exported="true"
-137-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:27:13-36
+137-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:27:13-36
 138            android:launchMode="singleTask"
-138-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:28:13-44
+138-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:28:13-44
 139            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
-139-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:29:13-102
+139-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:29:13-102
 140            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-140-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\d8723e16c849a6d3b704fc7661536d00\jetified-firebase-auth-17.0.0\AndroidManifest.xml:30:13-72
+140-->[com.google.firebase:firebase-auth:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\dd348c12e066028cbd6b1183a0cf0540\jetified-firebase-auth-17.0.0\AndroidManifest.xml:30:13-72
 141
 142        <receiver
 142-->[com.google.firebase:firebase-iid:20.0.2] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f26cdfb5f8d69cbc9663543f3ec1de65\firebase-iid-20.0.2\AndroidManifest.xml:37:9-44:20
@@ -252,15 +252,15 @@
 149        </receiver>
 150
 151        <provider
-151-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\9e24f5b5b8c9a8452a37368abab50e06\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
+151-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f7cd7620e2e083b311a42f6fc26535cc\jetified-firebase-common-19.3.0\AndroidManifest.xml:26:9-30:39
 152            android:name="com.google.firebase.provider.FirebaseInitProvider"
-152-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\9e24f5b5b8c9a8452a37368abab50e06\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
+152-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f7cd7620e2e083b311a42f6fc26535cc\jetified-firebase-common-19.3.0\AndroidManifest.xml:27:13-77
 153            android:authorities="com.example.book_app.firebaseinitprovider"
-153-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\9e24f5b5b8c9a8452a37368abab50e06\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
+153-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f7cd7620e2e083b311a42f6fc26535cc\jetified-firebase-common-19.3.0\AndroidManifest.xml:28:13-72
 154            android:exported="false"
-154-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\9e24f5b5b8c9a8452a37368abab50e06\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
+154-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f7cd7620e2e083b311a42f6fc26535cc\jetified-firebase-common-19.3.0\AndroidManifest.xml:29:13-37
 155            android:initOrder="100" />
-155-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\9e24f5b5b8c9a8452a37368abab50e06\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
+155-->[com.google.firebase:firebase-common:19.3.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\f7cd7620e2e083b311a42f6fc26535cc\jetified-firebase-common-19.3.0\AndroidManifest.xml:30:13-36
 156
 157        <activity
 157-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\4c0b774c09d5393feb013f0dbe753af3\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
@@ -272,11 +272,11 @@
 160-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\4c0b774c09d5393feb013f0dbe753af3\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
 161
 162        <meta-data
-162-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\c61e6afb54c8d108cb24428cae7152ba\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
+162-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\5466f9af3122964103975296f409e63e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:23:9-25:69
 163            android:name="com.google.android.gms.version"
-163-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\c61e6afb54c8d108cb24428cae7152ba\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
+163-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\5466f9af3122964103975296f409e63e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:24:13-58
 164            android:value="@integer/google_play_services_version" />
-164-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\c61e6afb54c8d108cb24428cae7152ba\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
+164-->[com.google.android.gms:play-services-basement:17.0.0] C:\Users\kynan\.gradle\caches\transforms-2\files-2.1\5466f9af3122964103975296f409e63e\jetified-play-services-basement-17.0.0\AndroidManifest.xml:25:13-66
 165    </application>
 166
 167</manifest>

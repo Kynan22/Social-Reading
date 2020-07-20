@@ -1,10 +1,7 @@
+import 'package:book_app/models/database.dart';
+import 'package:book_app/ui/widgets/social_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
-import 'package:book_app/models/dbSchema.dart';
-
-import 'package:book_app/login/authentication.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:book_app/login/root_page.dart';
 
 
 class SocialPage extends StatefulWidget {
@@ -17,20 +14,50 @@ class _SocialPageState extends State<SocialPage>{
   @override
   Widget build(BuildContext context) {
     IgnorePointer(ignoring: false,);
-    
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
     return Container(
       
       color: darkGrey,
-      child: new ListView(
-        padding: EdgeInsets.only(top:20, left: 15, right: 15),
-        children: getList(),
-      ),
+      child: new Column(
+        children: <Widget>[
+          Container(
+            height: deviceHeight*0.1,
+            width: 300,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text("Add Friend"),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => SocialWidgets().addFriend(context),
+                  ),
+                ),
+                RaisedButton(
+                  child: Text("Open Chat"),
+                  onPressed: () => Database().chatFriend(),
+                  
+                ),
+              ],
+            )
+          ),
+          Container(
+            height: deviceHeight*0.764,
+            child: ListView(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              children: getList(),
+            ),
+          ),
+        ],
+      )
     );
   }
 
   List<Widget> getList() {
     List<Container> list=[];
-    for(int x=0;x<20;x++){
+    for(int x=0;x<10;x++){
       list.add(Container(
         height: 160,
         padding: EdgeInsets.all(5),

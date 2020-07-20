@@ -10,3 +10,5 @@ Color pink = new Color(0xFFBE5373);
 Color purple = new Color(0xFF96639F);
 
 Color mainColour = purple;
+
+List<Color> colorList = [blue, purple, pink];

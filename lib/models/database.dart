@@ -33,6 +33,9 @@ class Database{
     var isbn10;
     // var identifier = book.items[0].volumeInfo.industryIdentifiers[1].toJson()['identifier'];
     var thumbnail = book.items[0].volumeInfo.imageLinks.toJson()['thumbnail'];
+    var title = book.items[0].volumeInfo.toJson()['title'];
+    var authors = book.items[0].volumeInfo.toJson()['authors'];
+    var published = book.items[0].volumeInfo.toJson()['publishedDate'];
     // var isbn10 = book.items[0].volumeInfo.industryIdentifiers[0].toJson()['identifier'];
     if(ii.toString().length == 13){
       identifier = book.items[0].volumeInfo.industryIdentifiers[0].toJson()['identifier'];
@@ -54,12 +57,22 @@ class Database{
     await dbRef.document(firebaseUser.uid).collection('books').document(identifier.toString()).setData(
       {
         'thumbnail' : thumbnail,
-        'isbn10' : isbn10
+        'isbn10' : isbn10,
+        'title' : title,
+        'authors' : authors,
+        'published' : published
       }
     ); 
     Navigator.pop(context);
   }
 
+  addShelf(context, shelfName) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    final CollectionReference dbRef = Firestore.instance.collection('users');
+
+    await dbRef.document(firebaseUser.uid).collection(shelfName).document('default').setData({});
+    //Navigator.pop(context);
+  }
 
   addUser(colour, handle, image, username) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
@@ -75,11 +88,161 @@ class Database{
     );
     // final databaseReference = Firestore.instance;
   }
+  addFriend(id) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    final CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection("friends");
 
-  Future<StreamBuilder> getUserBooks() async{
+    await dbRef.document(id).setData({});
+
+  }
+  chatFriend() async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    final CollectionReference dbRef = Firestore.instance.collection('users');
+
+  }
+
+  removeBook(context, collection, isbn) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    final CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection(collection);
+    Navigator.pop(context);
+    await dbRef.document(isbn).delete();
+    
+  }
+  Future<StreamBuilder> getShelfList(context) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("books").snapshots(),
+      stream: Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            Map<String, List> map = {};
+            List list = [];
+            for(var document in snapshot.data.documents){
+              for(var field in document["books"]){
+                list.add(field.toString());
+              }
+              map[document.documentID] = list.toList();
+              list.clear();
+            } 
+            print(map);
+            List<Widget> listwidget = [];
+            // for(var x = 0; x<map.length; x++){
+            //   listwidget.add(Container(
+            //       child: GestureDetector(
+            //         child: Container(
+            //           padding: EdgeInsets.all(10),
+            //           child: Text(
+            //             map[x][x].toString()
+            //           ),
+            //         ),
+            //       ),
+                  
+            //     ));
+            // }
+            return new ListView.builder(
+              itemCount: map.length,
+              itemBuilder: (BuildContext context, int index) {
+                String key = map.keys.elementAt(index);
+                return new Column(
+                  children: <Widget>[
+                    new Text("$key"),
+                    
+                    new Row(children:<Widget>[Text("${map[key]}")],),
+                  ],
+                );
+              },
+            );
+        }
+      },
+    );
+  }
+  getShelfList2(context) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    //CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves");
+    var shelves = await Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").getDocuments();
+    Map<String, List> map = {};
+    List list = [];
+    for(var document in shelves.documents){
+      for(var field in document.data["books"]){
+        list.add(field.toString());
+      }
+      map[document.documentID] = list;
+      list.clear();
+    } 
+
+    return map;
+  }
+  // StreamBuilder(
+  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("aaa").snapshots(),
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasError)
+  //         return new Text('Error: ${snapshot.error}');
+  //       switch (snapshot.connectionState) {
+  //         case ConnectionState.waiting:
+  //           return new Text('Loading...');
+  //         default:
+  //           print(snapshot.data.toString());
+  // Future<List<String>> getShelfBooks(shelf) async{
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
+  //   //CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves");
+  //   var shelves = await Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").document(shelf).get();
+  //   List<String> list = [];
+  //   for(var book in shelves.data["books"]){
+  //     list.add(book.toString());
+  //   } 
+
+  //   return list;
+  // }
+
+  
+  // Future<StreamBuilder> getUserBooks2(shelf) async{
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
+  //   var shelfBooks = await getShelfBooks(shelf);
+  //   return StreamBuilder<QuerySnapshot>(
+  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("books").snapshots(),
+  //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+  //       if (snapshot.hasError)
+  //         return new Text('Error: ${snapshot.error}');
+  //       switch (snapshot.connectionState) {
+  //         case ConnectionState.waiting:
+  //           return new Text('Loading...');
+  //         default:
+            
+  //           return new ListView(
+  //             scrollDirection: Axis.horizontal,
+  //             children: snapshot.data.documents.map((DocumentSnapshot document) {
+  //               // for (var key in document.data)
+  //               return new Container(
+  //                 child: GestureDetector(
+  //                   child: Container(
+  //                     padding: EdgeInsets.all(10),
+  //                     child: Image.network(
+  //                       document.data['thumbnail'],
+  //                       fit: BoxFit.fitHeight,
+  //                       alignment: Alignment.centerLeft,
+  //                     ),
+  //                   ),
+  //                   onTap: () => showDialog(
+  //                     context: context,
+  //                     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "books",document.documentID)),
+  //                 ),
+                  
+  //               );
+  //             }).toList(),
+  //           );
+  //       }
+  //     },
+  //   );
+  // }
+
+  Future<StreamBuilder> getUserBooks(shelf) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection(shelf).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError)
           return new Text('Error: ${snapshot.error}');
@@ -133,6 +296,45 @@ class Database{
       },
     );
   }
+  Future<StreamBuilder> getBookInfo(collection, isbn) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    return StreamBuilder(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection(collection).document(isbn).snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            return new Container(
+              //width: screenWidth * 0.3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: Text(snapshot.data['title'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,),),
+                    //padding: EdgeInsets.only(top: 65),
+                  ),
+                  Container(
+                    child: Text(snapshot.data['authors'][0], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                    padding: EdgeInsets.only(top: 5, bottom: 5),
+
+                  ), 
+                  Container(
+                    child: Text("Published "+snapshot.data['published'], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                    padding: EdgeInsets.only(top: 5, bottom: 10),
+
+                  ),
+                ],
+              ),
+            );
+        }
+      },
+    );
+  }
   Future<StreamBuilder> getUserReading() async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder<QuerySnapshot>(
@@ -165,25 +367,25 @@ class Database{
       },
     );
   }
-  Future<StreamBuilder> getAmazonLink() async{
+  Future<StreamBuilder> getAmazonLink(collection, isbn) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("books").snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    return StreamBuilder(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection(collection).document(isbn).snapshots(),
+      builder: (context, snapshot) {
         if (snapshot.hasError)
           return new Text('Error: ${snapshot.error}');
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
             return new Text('Loading...');
           default:
-            DocumentSnapshot ds = snapshot.data.documents[0];
+            //DocumentSnapshot ds = snapshot.data.documents[0];
             return new Container(
               //child: GestureDetector(
                 child: RaisedButton(
                   
                   padding: EdgeInsets.all(5),
-                  child: Text("Buy Now", style: TextStyle(color: darkGrey)),
-                  onPressed: () => _launchURL(ds['isbn10']),
+                  child: Text("Buy Now", style: TextStyle(fontSize: 12, color: darkGrey)),
+                  onPressed: () => _launchURL(snapshot.data['isbn10']),
                 ),
                 // onTap: (
                 //   () => _launchURL(ds['isbn10'])
@@ -329,7 +531,7 @@ class Database{
             return new Container(
               padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
               height: 18,
-              width: 180,
+              width: 150,
               child:  LinearProgressIndicator(
                 value: (ds['progress']).toDouble(),
                 backgroundColor: lightGrey,
@@ -370,6 +572,34 @@ class Database{
     );
   }
   Future<StreamBuilder> getUserSearchBooks() async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            DocumentSnapshot ds = snapshot.data.documents[0];
+            return new Container(
+              height: 18,
+              width: 180,
+              // child:  LinearProgressIndicator(
+              //   value: (ds['progress']).toDouble(),
+              //   backgroundColor: lightGrey,
+              //   valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
+              // ),
+              child: Text(
+                (ds['progress']*ds['pages']).toString().replaceAll(RegExp(r"([.]*0)(?!.*\d)"), '')+"/"+ds['pages'].toString()
+              ),
+            ); 
+        }
+      },
+    );
+  }
+  Future<StreamBuilder> getFriendSearchList() async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),

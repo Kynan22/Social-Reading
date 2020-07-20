@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 import 'package:book_app/ui/book_page.dart';
@@ -11,6 +12,7 @@ import 'social_page.dart';
 
 class Navbar{
   MaterialApp navbar(){
+
     return new MaterialApp(
       color: darkGrey,
       home: SafeArea(

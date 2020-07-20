@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Coding\\Projects\\VisualStudioCode\\Flutter\\FlutterBookApp\\build\\url_launcher\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rTW\\values-zh-rTW.xml",
+            "outputFile": "C:\\Users\\kynan\\Documents\\Flutter\\Projects\\BookApp\\build\\url_launcher\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-zh-rTW\\values-zh-rTW.xml",
             "map": [
                 {
                     "source": "C:\\Users\\kynan\\.gradle\\caches\\transforms-2\\files-2.1\\3aaf6e5219b7f981ec263df919098c6f\\core-1.1.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
@@ -16,7 +16,7 @@
             ]
         },
         {
-            "outputFile": "E:\\Coding\\Projects\\VisualStudioCode\\Flutter\\FlutterBookApp\\build\\url_launcher\\intermediates\\res\\merged\\debug\\values-zh-rTW\\values-zh-rTW.xml",
+            "outputFile": "C:\\Users\\kynan\\Documents\\Flutter\\Projects\\BookApp\\build\\url_launcher\\intermediates\\res\\merged\\debug\\values-zh-rTW\\values-zh-rTW.xml",
             "map": [
                 {
                     "source": "C:\\Users\\kynan\\.gradle\\caches\\transforms-2\\files-2.1\\3aaf6e5219b7f981ec263df919098c6f\\core-1.1.0\\res\\values-zh-rTW\\values-zh-rTW.xml",

@@ -62,12 +62,13 @@ class _BookPageState extends State<BookPage>{
   List<Widget> getList() {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
+    var shelves = Database().getShelfList(context);
 
     List<Container> list=[];
     list.add(Container(
         height: 50,
         color: darkGrey,
-        padding: EdgeInsets.only(left: 30, top: 20,),
+        padding: EdgeInsets.only(left: 30),
         child: Text(
           "Reading",
           style: TextStyle(
@@ -155,11 +156,10 @@ class _BookPageState extends State<BookPage>{
           ],
         ), 
     ));
-   //RtiRzzFYB2Saz9T1NdKEX2Z2WCJ2
     list.add(Container(
       height: 150,
       child: FutureBuilder<StreamBuilder>(
-        future: Database().getUserBooks(),
+        future: Database().getUserBooks("books"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return snapshot.data;
@@ -172,6 +172,37 @@ class _BookPageState extends State<BookPage>{
         },        
       ),
     ));
+    // for(var shelf in shelves){
+    list.add(Container(
+      height: 150,
+      color: Colors.red,
+        child: FutureBuilder(
+          future: Database().getShelfList(context),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return snapshot.data;
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            else{
+              return CircularProgressIndicator();
+            }
+          },        
+        ),
+    ));
+    //}
+    
+    list.add(Container(
+      height: 80,
+      child: GestureDetector(
+        child: Icon(Icons.add_box, size: 40, color: lightGrey,),
+        onTap: () => showDialog(
+          context: context,
+          builder: (BuildContext context) => PopupWidgets().addShelfWidget(context, list),
+        ),
+      ),
+    ));
+    
 
     return list;
   }
