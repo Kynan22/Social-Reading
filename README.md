@@ -1,6 +1,6 @@
-# book_app
+# Social Reading
 
-A new Flutter project.
+A Flutter app to allow users to their reading data and communicate with other users.
 
 ## Getting Started
 
