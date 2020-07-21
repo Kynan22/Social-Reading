@@ -1,8 +1,8 @@
 import 'package:book_app/models/database.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/login/authentication.dart';
-import 'package:book_app/models/dbSchema.dart';
-import 'package:book_app/models/global.dart';
+// import 'package:book_app/models/dbSchema.dart';
+// import 'package:book_app/models/global.dart';
 
 
 class SignupPage extends StatefulWidget {
@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage> {
           print('Signed in: $userId');
         } else {
           userId = await widget.auth.signUp(_email, _password);
-          Database().addUser(_colour, _handle, _image, _username);
+          Database().addUser(userId, 2, "+flutter1234+", "sherlock.png", "FLUTTTTTTER");
           _isLoginForm = true;
           
           //widget.auth.sendEmailVerification();

@@ -74,11 +74,11 @@ class Database{
     //Navigator.pop(context);
   }
 
-  addUser(colour, handle, image, username) async{
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
+  addUser(userid, colour, handle, image, username) async{
+    //var firebaseUser = userid;
     final CollectionReference dbRef = Firestore.instance.collection('users');
 
-    await dbRef.document(firebaseUser.uid).setData(
+    await dbRef.document(userid).setData(
       {
         'colour' : colour,
         'handle' : handle,
@@ -495,6 +495,7 @@ class Database{
 
   Future<Color> getUserColour() async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
+    
     return await Firestore.instance.collection("users").document(firebaseUser.uid).get().then((value)
       {
         switch(value.data["colour"]){
