@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\kynan\\Documents\\Flutter\\Projects\\BookApp\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-or\\values-or.xml",
+            "outputFile": "E:\\Coding\\Projects\\VisualStudioCode\\Flutter\\Social-Reading\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-or\\values-or.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\kynan\\.gradle\\caches\\transforms-2\\files-2.1\\5466f9af3122964103975296f409e63e\\jetified-play-services-basement-17.0.0\\res\\values-or\\values.xml",
+                    "source": "C:\\Users\\kynan\\.gradle\\caches\\transforms-2\\files-2.1\\c61e6afb54c8d108cb24428cae7152ba\\jetified-play-services-basement-17.0.0\\res\\values-or\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
