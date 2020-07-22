@@ -346,23 +346,49 @@ class Database{
           case ConnectionState.waiting:
             return new Text('Loading...');
           default:
-            DocumentSnapshot ds = snapshot.data.documents[0];
-            return new Container(
-              child: GestureDetector(
-                child: Container(
-                  padding: EdgeInsets.all(10),
-                  child: Image.network(
-                    ds.data['thumbnail'],
-                    fit: BoxFit.fitHeight,
-                    alignment: Alignment.centerLeft,
+            try{
+              DocumentSnapshot ds = snapshot.data.documents[0];
+              return new Container(
+                child: GestureDetector(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Image.network(
+                      ds.data['thumbnail'],
+                      fit: BoxFit.fitHeight,
+                      alignment: Alignment.centerLeft,
+                    ),
                   ),
+                  onTap: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
                 ),
-                onTap: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
-              ),
-            )
-          );
+              )
+            );
+          }
+          on RangeError{
+            return new Container(
+                child: GestureDetector(
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Center(
+                      child: Text(
+                        "Select a book to begin reading!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20, 
+                          fontWeight: FontWeight.w900, 
+                          color: mainColour,
+                        ),
+                      ),
+                    ),
+                  ),
+                //   onTap: () => showDialog(
+                //     context: context,
+                //     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
+                //   ),
+              )
+            );
+          }
         }
       },
     );
@@ -528,18 +554,33 @@ class Database{
           case ConnectionState.waiting:
             return new Text('Loading...');
           default:
-            DocumentSnapshot ds = snapshot.data.documents[0];
-            return new Container(
-              padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-              height: 18,
-              width: 150,
-              child:  LinearProgressIndicator(
-                value: (ds['progress']).toDouble(),
-                backgroundColor: lightGrey,
-                valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
-              ),
-              //child: Text((ds['progress']/100).toString()),
-            ); 
+            try{
+              DocumentSnapshot ds = snapshot.data.documents[0];
+              return new Container(
+                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                height: 18,
+                width: 150,
+                child:  LinearProgressIndicator(
+                  value: (ds['progress']).toDouble(),
+                  backgroundColor: lightGrey,
+                  valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
+                ),
+                //child: Text((ds['progress']/100).toString()),
+              );
+            }
+            on RangeError {
+              return new Container(
+                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                height: 18,
+                width: 150,
+                child:  LinearProgressIndicator(
+                  value: 0,
+                  backgroundColor: lightGrey,
+                  valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
+                ),
+                //child: Text((ds['progress']/100).toString()),
+              );
+            }
         }
       },
     );

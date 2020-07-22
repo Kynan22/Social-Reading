@@ -55,6 +55,7 @@ class _BookPageState extends State<BookPage>{
       color: darkGrey,
       child: ListView(
         padding: EdgeInsets.only(top:30),
+        //children: null,
         children: getList(),
       )
     );
@@ -68,15 +69,41 @@ class _BookPageState extends State<BookPage>{
     list.add(Container(
         height: 50,
         color: darkGrey,
-        padding: EdgeInsets.only(left: 30),
-        child: Text(
-          "Reading",
-          style: TextStyle(
-            fontSize: 20, 
-            fontWeight: FontWeight.bold, 
-            color: lightGrey,
-          ),
-        ),
+        padding: EdgeInsets.only(left: 30, right: 30),
+        // child: Text(
+        //   "Reading",
+        //   style: TextStyle(
+        //     fontSize: 20, 
+        //     fontWeight: FontWeight.bold, 
+        //     color: lightGrey,
+        //   ),
+        // ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            new Text(
+              "Reading",
+              style: TextStyle(
+                fontSize: 20, 
+                fontWeight: FontWeight.bold, 
+                color: lightGrey,
+              ),
+            ),
+            new GestureDetector(
+              child: Icon(
+                Icons.add_circle,
+                color: lightGrey,
+                size: 30,
+              ),
+              //onTap: () => PopupWidgets().showWidget(context),
+              // onTap: () => showDialog(
+              //   context: context,
+              //   builder: (BuildContext context) => PopupWidgets().addReading(context)),
+            ),
+          ],
+        ), 
+
+        
     ));
     list.add(Container(
       height: 170,
@@ -173,35 +200,35 @@ class _BookPageState extends State<BookPage>{
       ),
     ));
     // for(var shelf in shelves){
-    list.add(Container(
-      height: 150,
-      color: Colors.red,
-        child: FutureBuilder(
-          future: Database().getShelfList(context),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return snapshot.data;
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-            else{
-              return CircularProgressIndicator();
-            }
-          },        
-        ),
-    ));
+    // list.add(Container(
+    //   height: 150,
+    //   color: Colors.red,
+    //     child: FutureBuilder(
+    //       future: Database().getShelfList(context),
+    //       builder: (context, snapshot) {
+    //         if (snapshot.hasData) {
+    //           return snapshot.data;
+    //         } else if (snapshot.hasError) {
+    //           return Text("${snapshot.error}");
+    //         }
+    //         else{
+    //           return CircularProgressIndicator();
+    //         }
+    //       },        
+    //     ),
+    // ));
     //}
     
-    list.add(Container(
-      height: 80,
-      child: GestureDetector(
-        child: Icon(Icons.add_box, size: 40, color: lightGrey,),
-        onTap: () => showDialog(
-          context: context,
-          builder: (BuildContext context) => PopupWidgets().addShelfWidget(context, list),
-        ),
-      ),
-    ));
+    // list.add(Container(
+    //   height: 80,
+    //   child: GestureDetector(
+    //     child: Icon(Icons.add_box, size: 40, color: lightGrey,),
+    //     onTap: () => showDialog(
+    //       context: context,
+    //       builder: (BuildContext context) => PopupWidgets().addShelfWidget(context, list),
+    //     ),
+    //   ),
+    // ));
     
 
     return list;

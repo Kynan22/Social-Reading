@@ -54,7 +54,7 @@ class _SignupPageState extends State<SignupPage> {
           print('Signed in: $userId');
         } else {
           userId = await widget.auth.signUp(_email, _password);
-          Database().addUser(userId, 2, "+flutter1234+", "sherlock.png", "FLUTTTTTTER");
+          Database().addUser(userId, 2, "+flutter1234+", "sherlock_profile.png", "FLUTTTTTTER");
           _isLoginForm = true;
           
           //widget.auth.sendEmailVerification();
