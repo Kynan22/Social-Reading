@@ -46,7 +46,7 @@ class _SignupPageState extends State<SignupPage> {
       _errorMessage = "";
       _isLoading = true;
     });
-    if (validateAndSave()) {
+    if (validateAndSave()) {    
       String userId = "";
       try {
         if (_isLoginForm) {

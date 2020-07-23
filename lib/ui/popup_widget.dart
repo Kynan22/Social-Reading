@@ -47,7 +47,7 @@ class PopupWidgets extends StatefulWidget {
       MaterialPageRoute(builder: (context) => RootPage(auth: new Auth())),
     );
   }
-  Widget addBook(context){
+  Widget addBook(context, shelf){
     String textValue;
     List listValue;
     return Dialog(
@@ -82,12 +82,35 @@ class PopupWidgets extends StatefulWidget {
                   Navigator.pop(context);
                   showDialog(
                   context: context,
-                  builder: (BuildContext context) => showSearchList(context, value));
+                  builder: (BuildContext context) => showSearchList(context, value, shelf));
                 }
               ),
             ),
           ],
         )
+      ),
+    );
+  }
+  Widget readingFull(context){
+    String textValue;
+    List listValue;
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: new BoxDecoration(color: lightGrey, borderRadius:new BorderRadius.circular(25.0),),
+        height: 80,
+        width: 200,
+        child: Center(
+          child: Text(
+            "Please remove your current reading first.",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20, 
+              fontWeight: FontWeight.w900, 
+              color: mainColour,
+            ),
+          )
+        ),
       ),
     );
   }
@@ -180,7 +203,7 @@ class PopupWidgets extends StatefulWidget {
     );
   }
 
-  Future<Widget> getSearchList(context, value) async {
+  Future<Widget> getSearchList(context, value, shelf) async {
     Book books = await Api().fetchBooks(value);
     
     // var screenWidth = MediaQuery.of(context).size.width;
@@ -225,7 +248,7 @@ class PopupWidgets extends StatefulWidget {
                         color: darkGrey,
                         size: 30,
                       ),
-                      onTap: () => Database().addBook(context, item.volumeInfo.industryIdentifiers[0].toJson()['identifier'].toString()),
+                      onTap: () => Database().checkBook(context, item.volumeInfo.industryIdentifiers[0].toJson()['identifier'].toString(), shelf),
                     ),
                   ],
                 ),
@@ -298,7 +321,7 @@ class PopupWidgets extends StatefulWidget {
                           color: darkGrey,
                           size: 30,
                         ),
-                        onTap: () => Database().addBook(context, item.volumeInfo.industryIdentifiers[1].toJson()['identifier'].toString()),
+                        onTap: () => Database().checkBook(context, item.volumeInfo.industryIdentifiers[1].toJson()['identifier'].toString(), shelf),
                       ),
                     ],
                   ),
@@ -515,7 +538,7 @@ class PopupWidgets extends StatefulWidget {
   //   return ListView(children: list,);
   // }
 
-  Dialog showSearchList(context, value){
+  Dialog showSearchList(context, value, shelf){
     
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
@@ -549,14 +572,14 @@ class PopupWidgets extends StatefulWidget {
                   Navigator.pop(context);
                   showDialog(
                   context: context,
-                  builder: (BuildContext context) => showSearchList(context, value));
+                  builder: (BuildContext context) => showSearchList(context, value, shelf));
                 }
               ),
             ),
             Container(
               height: 600,
               child: FutureBuilder<Widget>(
-                future: getSearchList(context,value),
+                future: getSearchList(context,value,shelf),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return snapshot.data;

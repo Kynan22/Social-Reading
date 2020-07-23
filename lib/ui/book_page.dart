@@ -95,10 +95,9 @@ class _BookPageState extends State<BookPage>{
                 color: lightGrey,
                 size: 30,
               ),
-              //onTap: () => PopupWidgets().showWidget(context),
-              // onTap: () => showDialog(
-              //   context: context,
-              //   builder: (BuildContext context) => PopupWidgets().addReading(context)),
+              onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => PopupWidgets().addBook(context, "reading")),
             ),
           ],
         ), 
@@ -178,7 +177,7 @@ class _BookPageState extends State<BookPage>{
               //onTap: () => PopupWidgets().showWidget(context),
               onTap: () => showDialog(
                 context: context,
-                builder: (BuildContext context) => PopupWidgets().addBook(context)),
+                builder: (BuildContext context) => PopupWidgets().addBook(context, "next")),
             ),
           ],
         ), 
@@ -186,7 +185,7 @@ class _BookPageState extends State<BookPage>{
     list.add(Container(
       height: 150,
       child: FutureBuilder<StreamBuilder>(
-        future: Database().getUserBooks("books"),
+        future: Database().getUserBooks("next"),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return snapshot.data;

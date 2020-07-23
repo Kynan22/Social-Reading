@@ -20,12 +20,36 @@ class Database{
     var userColour = await getUserColour();
     return userColour;
   }
-
-  addBook(context,isbn) async{
+  checkBook(context,isbn,shelf) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    final CollectionReference dbRef = Firestore.instance.collection('users');
+    
+    if(shelf == "reading"){
+      try{
+       
+        var reading = await dbRef.document(firebaseUser.uid).collection(shelf).getDocuments();
+        var book = reading.documents[0];
+        Navigator.pop(context);
+        
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => PopupWidgets().readingFull(context));
+      }
+      on RangeError{
+        addBook(context, isbn, shelf);
+      }
+      
+    }
+    else{
+      addBook(context, isbn, shelf);
+    }
+  }
+  addBook(context,isbn,shelf) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     final CollectionReference dbRef = Firestore.instance.collection('users');
 
     var json = await Api().fetchBook(isbn);
+     
 
     var book = Book.fromJson(json);
     var ii = book.items[0].volumeInfo.industryIdentifiers[0].toJson()['identifier'];
@@ -53,14 +77,15 @@ class Database{
     //     'username' : username,
     //   }
     // );
-    print(identifier);
-    await dbRef.document(firebaseUser.uid).collection('books').document(identifier.toString()).setData(
+    
+    await dbRef.document(firebaseUser.uid).collection(shelf).document(identifier.toString()).setData(
       {
         'thumbnail' : thumbnail,
         'isbn10' : isbn10,
         'title' : title,
         'authors' : authors,
-        'published' : published
+        'published' : published,
+        'progress' : 0
       }
     ); 
     Navigator.pop(context);
@@ -266,7 +291,7 @@ class Database{
                     ),
                     onTap: () => showDialog(
                       context: context,
-                      builder: (BuildContext context) => PopupWidgets().bookWidget(context, "books",document.documentID)),
+                      builder: (BuildContext context) => PopupWidgets().bookWidget(context, shelf,document.documentID)),
                   ),
                   
                 );
