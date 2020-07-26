@@ -135,6 +135,7 @@ class Database{
   }
   Future<StreamBuilder> getShelfList(context) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
+    
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -201,67 +202,23 @@ class Database{
 
     return map;
   }
-  // StreamBuilder(
-  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("aaa").snapshots(),
-  //     builder: (context, snapshot) {
-  //       if (snapshot.hasError)
-  //         return new Text('Error: ${snapshot.error}');
-  //       switch (snapshot.connectionState) {
-  //         case ConnectionState.waiting:
-  //           return new Text('Loading...');
-  //         default:
-  //           print(snapshot.data.toString());
-  // Future<List<String>> getShelfBooks(shelf) async{
-  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   //CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves");
-  //   var shelves = await Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").document(shelf).get();
-  //   List<String> list = [];
-  //   for(var book in shelves.data["books"]){
-  //     list.add(book.toString());
-  //   } 
-
-  //   return list;
-  // }
-
   
-  // Future<StreamBuilder> getUserBooks2(shelf) async{
+  // Future<FutureBuilder> getShelves(context) async{
   //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   var shelfBooks = await getShelfBooks(shelf);
-  //   return StreamBuilder<QuerySnapshot>(
-  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("books").snapshots(),
-  //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+  //   return FutureBuilder<DocumentSnapshot>(
+  //     future: Firestore.instance.collection('users').document(firebaseUser.uid).get(),
+  //     builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
   //       if (snapshot.hasError)
   //         return new Text('Error: ${snapshot.error}');
   //       switch (snapshot.connectionState) {
   //         case ConnectionState.waiting:
   //           return new Text('Loading...');
   //         default:
-            
-  //           return new ListView(
-  //             scrollDirection: Axis.horizontal,
-  //             children: snapshot.data.documents.map((DocumentSnapshot document) {
-  //               // for (var key in document.data)
-  //               return new Container(
-  //                 child: GestureDetector(
-  //                   child: Container(
-  //                     padding: EdgeInsets.all(10),
-  //                     child: Image.network(
-  //                       document.data['thumbnail'],
-  //                       fit: BoxFit.fitHeight,
-  //                       alignment: Alignment.centerLeft,
-  //                     ),
-  //                   ),
-  //                   onTap: () => showDialog(
-  //                     context: context,
-  //                     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "books",document.documentID)),
-  //                 ),
-                  
-  //               );
-  //             }).toList(),
-  //           );
+  //           return Text(snapshot.data.toString());
   //       }
-  //     },
+  //     }
   //   );
+
   // }
 
   Future<StreamBuilder> getUserBooks(shelf) async{
@@ -694,7 +651,68 @@ class Database{
       },
     );
   }
- 
+  // StreamBuilder(
+  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("aaa").snapshots(),
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasError)
+  //         return new Text('Error: ${snapshot.error}');
+  //       switch (snapshot.connectionState) {
+  //         case ConnectionState.waiting:
+  //           return new Text('Loading...');
+  //         default:
+  //           print(snapshot.data.toString());
+  // Future<List<String>> getShelfBooks(shelf) async{
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
+  //   //CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves");
+  //   var shelves = await Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").document(shelf).get();
+  //   List<String> list = [];
+  //   for(var book in shelves.data["books"]){
+  //     list.add(book.toString());
+  //   } 
+
+  //   return list;
+  // }
+
+  
+  // Future<StreamBuilder> getUserBooks2(shelf) async{
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
+  //   var shelfBooks = await getShelfBooks(shelf);
+  //   return StreamBuilder<QuerySnapshot>(
+  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("books").snapshots(),
+  //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+  //       if (snapshot.hasError)
+  //         return new Text('Error: ${snapshot.error}');
+  //       switch (snapshot.connectionState) {
+  //         case ConnectionState.waiting:
+  //           return new Text('Loading...');
+  //         default:
+            
+  //           return new ListView(
+  //             scrollDirection: Axis.horizontal,
+  //             children: snapshot.data.documents.map((DocumentSnapshot document) {
+  //               // for (var key in document.data)
+  //               return new Container(
+  //                 child: GestureDetector(
+  //                   child: Container(
+  //                     padding: EdgeInsets.all(10),
+  //                     child: Image.network(
+  //                       document.data['thumbnail'],
+  //                       fit: BoxFit.fitHeight,
+  //                       alignment: Alignment.centerLeft,
+  //                     ),
+  //                   ),
+  //                   onTap: () => showDialog(
+  //                     context: context,
+  //                     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "books",document.documentID)),
+  //                 ),
+                  
+  //               );
+  //             }).toList(),
+  //           );
+  //       }
+  //     },
+  //   );
+  // }
 }
 
 

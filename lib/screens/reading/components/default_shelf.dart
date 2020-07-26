@@ -6,7 +6,7 @@ import 'package:book_app/ui/popup_widget.dart';
 
 
 class Default {
-  Container getShelf(name, context){
+  Container getShelf(shelf, context){
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     return Container(
@@ -20,7 +20,7 @@ class Default {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 new Text(
-                  name,
+                  shelf,
                   style: TextStyle(
                     fontSize: 20, 
                     fontWeight: FontWeight.bold, 
@@ -35,7 +35,7 @@ class Default {
                   ),
                   onTap: () => showDialog(
                     context: context,
-                    builder: (BuildContext context) => PopupWidgets().addBook(context, "next")),
+                    builder: (BuildContext context) => PopupWidgets().addBook(context, shelf)),
                 ),
               ],
             ),
@@ -43,7 +43,7 @@ class Default {
           new Container(
             height: 150,
             child: FutureBuilder<StreamBuilder>(
-              future: Database().getUserBooks("next"),
+              future: Database().getUserBooks(shelf),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return snapshot.data;

@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'reading_shelf.dart';
 import 'default_shelf.dart';
-
+import '../../../models/database.dart';
 
 class Shelves {
   List<Widget> getList(context) {
-    //var shelves = Database().getShelfList(context);
-
+    //var shelves = Database().getShelves(context);
     List<Container> list=[];
-
+    // list.add(Container(
+    //   child:Text(
+    //     shelves.toString()
+    //   ),
+    // ));
     list.add(Reading().getShelf(context));
-    list.add(Default().getShelf("next", context));
-    list.add(Default().getShelf("completed", context));
+    list.add(Default().getShelf("Up Next", context));
+    list.add(Default().getShelf("Completed", context));
 
+    // for(var shelf in shelves){
+    //   list.add(Default().getShelf(shelf, context));
+    // }
     // for(var shelf in shelves){
     // list.add(Container(
     //   height: 150,
