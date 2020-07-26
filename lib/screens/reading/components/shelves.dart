@@ -8,8 +8,10 @@ class Shelves {
     //var shelves = Database().getShelfList(context);
 
     List<Container> list=[];
+
     list.add(Reading().getShelf(context));
-    list.add(Default().getShelf("Up Next", context));
+    list.add(Default().getShelf("next", context));
+    list.add(Default().getShelf("completed", context));
 
     // for(var shelf in shelves){
     // list.add(Container(
