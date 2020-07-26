@@ -1,5 +1,5 @@
 import 'package:book_app/models/database.dart';
-import 'package:book_app/ui/widgets/social_widgets.dart';
+import 'package:book_app/screens/social/components/social_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 

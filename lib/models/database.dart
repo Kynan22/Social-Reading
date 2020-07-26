@@ -1,4 +1,4 @@
-import 'package:book_app/ui/book_page.dart';
+import 'package:book_app/screens/reading/book_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;

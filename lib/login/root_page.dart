@@ -2,7 +2,7 @@ import 'package:book_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/login/signup.dart';
 import 'package:book_app/login/authentication.dart';
-import 'package:book_app/ui/book_page.dart';
+import 'package:book_app/screens/reading/book_page.dart';
 
 enum AuthStatus {
   NOT_DETERMINED,

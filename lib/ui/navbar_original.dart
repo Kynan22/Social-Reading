@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
-import 'package:book_app/ui/book_page.dart';
-import 'package:book_app/ui/account_page.dart';
-import 'package:book_app/ui/social_page.dart';
+import 'package:book_app/screens/reading/book_page.dart';
+import 'package:book_app/screens/profile/account_page.dart';
+import 'package:book_app/screens/social/social_page.dart';
 
 import '../models/global.dart';
 import '../models/global.dart';
