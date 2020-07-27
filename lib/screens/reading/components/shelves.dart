@@ -1,20 +1,46 @@
+import 'package:book_app/screens/reading/components/add_shelf.dart';
 import 'package:flutter/material.dart';
 import 'reading_shelf.dart';
 import 'default_shelf.dart';
+import 'add_shelf.dart';
 import '../../../models/database.dart';
 
 class Shelves {
-  List<Widget> getList(context) {
-    //var shelves = Database().getShelves(context);
+  getList(context) async{
+    //var shelves = await Database().getShelves(context);
     List<Container> list=[];
-    // list.add(Container(
-    //   child:Text(
-    //     shelves.toString()
-    //   ),
-    // ));
-    list.add(Reading().getShelf(context));
-    list.add(Default().getShelf("Up Next", context));
-    list.add(Default().getShelf("Completed", context));
+
+    return FutureBuilder<dynamic>(
+      future: Database().getShelves(context),
+      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            list.add(Reading().getShelf(context));
+            for(var shelf in snapshot.data){
+              list.add(Default().getShelf(shelf, context));
+            }
+            list.add(AddShelf().addShelf(context));
+
+            return ListView(
+              padding: EdgeInsets.only(top:30),
+              children: list,
+            );
+        }
+      }
+    );
+
+
+    // await Database().getShelves(context, list);
+    // // await for(var shelf in ){
+    // //   list.add(Default().getShelf(shelf, context));
+    // // }
+    // list.add(Reading().getShelf(context));
+    // list.add(Default().getShelf("Up Next", context));
+    // list.add(Default().getShelf("Completed", context));
 
     // for(var shelf in shelves){
     //   list.add(Default().getShelf(shelf, context));
@@ -51,6 +77,9 @@ class Shelves {
     // ));
     
 
-    return list;
+    // return ListView(
+    //   padding: EdgeInsets.only(top:30),
+    //   children: list,
+    // );
   }  
 }

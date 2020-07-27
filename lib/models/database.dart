@@ -14,6 +14,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:book_app/models/global.dart';
 import 'package:book_app/models/api.dart';
 
+import '../screens/reading/components/default_shelf.dart';
+
+
 class Database{
 
   getColour() async{
@@ -23,7 +26,6 @@ class Database{
   checkBook(context,isbn,shelf) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     final CollectionReference dbRef = Firestore.instance.collection('users');
-    
     if(shelf == "reading"){
       try{
        
@@ -49,7 +51,7 @@ class Database{
     final CollectionReference dbRef = Firestore.instance.collection('users');
 
     var json = await Api().fetchBook(isbn);
-     
+    print(json.toString());
 
     var book = Book.fromJson(json);
     var ii = book.items[0].volumeInfo.industryIdentifiers[0].toJson()['identifier'];
@@ -93,9 +95,9 @@ class Database{
 
   addShelf(context, shelfName) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    final CollectionReference dbRef = Firestore.instance.collection('users');
+    //final CollectionReference dbRef = Firestore.instance.collection('users');
 
-    await dbRef.document(firebaseUser.uid).collection(shelfName).document('default').setData({});
+    await Firestore.instance.collection('users').document(firebaseUser.uid).updateData({'shelves': FieldValue.arrayUnion([shelfName])});
     //Navigator.pop(context);
   }
 
@@ -202,24 +204,15 @@ class Database{
 
     return map;
   }
-  
-  // Future<FutureBuilder> getShelves(context) async{
-  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   return FutureBuilder<DocumentSnapshot>(
-  //     future: Firestore.instance.collection('users').document(firebaseUser.uid).get(),
-  //     builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-  //       if (snapshot.hasError)
-  //         return new Text('Error: ${snapshot.error}');
-  //       switch (snapshot.connectionState) {
-  //         case ConnectionState.waiting:
-  //           return new Text('Loading...');
-  //         default:
-  //           return Text(snapshot.data.toString());
-  //       }
-  //     }
-  //   );
+  getShelves(context) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    var shelves = Firestore.instance.collection('users').document(firebaseUser.uid).get().then((querySnapshot) {
+      return querySnapshot.data['shelves'];
+    });
+    
+    return shelves;
 
-  // }
+  }
 
   Future<StreamBuilder> getUserBooks(shelf) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();

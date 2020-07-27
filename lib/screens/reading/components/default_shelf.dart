@@ -7,8 +7,6 @@ import 'package:book_app/ui/popup_widget.dart';
 
 class Default {
   Container getShelf(shelf, context){
-    var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
     return Container(
       child: Column(
         children: <Widget>[
@@ -46,7 +44,9 @@ class Default {
               future: Database().getUserBooks(shelf),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return snapshot.data;
+                    return snapshot.data;
+                  
+                  
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }

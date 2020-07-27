@@ -25,7 +25,7 @@ class PopupWidgets extends StatefulWidget {
   @override
   _PopupWidgets createState() => _PopupWidgets();
 
-   changeProfile(String choice, context) async{
+  changeProfile(String choice, context) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     final firestoreInstance = Firestore.instance;
     firestoreInstance.collection("users").document(firebaseUser.uid).updateData( 
@@ -34,7 +34,7 @@ class PopupWidgets extends StatefulWidget {
     }).then((value){});
     Navigator.pop(context);
   }
-  changeColour(int choice, context) async{
+  changeColour(int choice, context)  async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     final firestoreInstance = Firestore.instance;
     firestoreInstance.collection("users").document(firebaseUser.uid).updateData( 
@@ -161,7 +161,7 @@ class PopupWidgets extends StatefulWidget {
   // }
 
 
-  Widget addShelfWidget(context, list){
+  Widget addShelfWidget(context){
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
@@ -192,8 +192,12 @@ class PopupWidgets extends StatefulWidget {
                 },
                 onFieldSubmitted: (String value) async{
                   Navigator.pop(context);
-                  list.add(Container(height: 100, width: 100, child:Text(value)));
+                  // list.add(Container(height: 100, width: 100, child:Text(value)));
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) => addBook(context, value));
                   Database().addShelf(context, value);
+                  
                 }
               ),
             ),

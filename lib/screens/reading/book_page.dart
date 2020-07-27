@@ -36,11 +36,24 @@ class _BookPageState extends State<BookPage>{
     IgnorePointer(ignoring: false,);
     return Container(
       color: darkGrey,
-      child: ListView(
-        padding: EdgeInsets.only(top:30),
-        //children: null,
-        children: Shelves().getList(context),
-      )
+      child: FutureBuilder<dynamic>(
+        future: Shelves().getList(context),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return snapshot.data;
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          else{
+            return CircularProgressIndicator();
+          }
+        },        
+      ),
+      // child: ListView(
+      //   padding: EdgeInsets.only(top:30),
+      //   //children: null,
+      //   children: Shelves().getList(context),
+      // )
     );
   }
   
