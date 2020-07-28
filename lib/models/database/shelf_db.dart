@@ -88,6 +88,43 @@ class ShelfDB {
     );
   }
 
+  openShelf(shelf) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection(shelf).snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            return new Container(
+              child: ListView(
+              scrollDirection: Axis.vertical,
+              children: snapshot.data.documents.map((DocumentSnapshot document) {
+                // for (var key in document.data)
+                return new Container(
+                  padding: EdgeInsets.all(10),
+                  child: Image.network(
+                    document.data['thumbnail'],
+                    fit: BoxFit.fitHeight,
+                    alignment: Alignment.centerLeft,
+                  ),
+                );
+              }).toList(),
+            )
+          );
+        }
+      },
+    );
+  }
+
+
+
+
+
+
   // Future<StreamBuilder> displayBooks(shelf) async{
   //   return StreamBuilder<QuerySnapshot>(
   //     stream: getShelfBooks(shelf);
