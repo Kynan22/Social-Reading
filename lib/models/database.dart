@@ -93,13 +93,7 @@ class Database{
     Navigator.pop(context);
   }
 
-  addShelf(context, shelfName) async{
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
-    //final CollectionReference dbRef = Firestore.instance.collection('users');
-
-    await Firestore.instance.collection('users').document(firebaseUser.uid).updateData({'shelves': FieldValue.arrayUnion([shelfName])});
-    //Navigator.pop(context);
-  }
+  
 
   addUser(userid, colour, handle, image, username) async{
     //var firebaseUser = userid;
@@ -135,84 +129,8 @@ class Database{
     await dbRef.document(isbn).delete();
     
   }
-  Future<StreamBuilder> getShelfList(context) async{
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
-    
-    return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError)
-          return new Text('Error: ${snapshot.error}');
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            return new Text('Loading...');
-          default:
-            Map<String, List> map = {};
-            List list = [];
-            for(var document in snapshot.data.documents){
-              for(var field in document["books"]){
-                list.add(field.toString());
-              }
-              map[document.documentID] = list.toList();
-              list.clear();
-            } 
-            print(map);
-            List<Widget> listwidget = [];
-            // for(var x = 0; x<map.length; x++){
-            //   listwidget.add(Container(
-            //       child: GestureDetector(
-            //         child: Container(
-            //           padding: EdgeInsets.all(10),
-            //           child: Text(
-            //             map[x][x].toString()
-            //           ),
-            //         ),
-            //       ),
-                  
-            //     ));
-            // }
-            return new ListView.builder(
-              itemCount: map.length,
-              itemBuilder: (BuildContext context, int index) {
-                String key = map.keys.elementAt(index);
-                return new Column(
-                  children: <Widget>[
-                    new Text("$key"),
-                    
-                    new Row(children:<Widget>[Text("${map[key]}")],),
-                  ],
-                );
-              },
-            );
-        }
-      },
-    );
-  }
-  getShelfList2(context) async{
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
-    //CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves");
-    var shelves = await Firestore.instance.collection('users').document(firebaseUser.uid).collection("shelves").getDocuments();
-    Map<String, List> map = {};
-    List list = [];
-    for(var document in shelves.documents){
-      for(var field in document.data["books"]){
-        list.add(field.toString());
-      }
-      map[document.documentID] = list;
-      list.clear();
-    } 
 
-    return map;
-  }
-  getShelves(context) async{
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
-    var shelves = Firestore.instance.collection('users').document(firebaseUser.uid).get().then((querySnapshot) {
-      return querySnapshot.data['shelves'];
-    });
-    
-    return shelves;
 
-  }
 
   Future<StreamBuilder> getUserBooks(shelf) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
