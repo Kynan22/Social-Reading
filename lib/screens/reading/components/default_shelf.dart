@@ -1,3 +1,4 @@
+import 'package:book_app/models/database/shelf_db.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 import 'package:flutter/rendering.dart';
@@ -41,12 +42,10 @@ class Default {
           new Container(
             height: 150,
             child: FutureBuilder<StreamBuilder>(
-              future: Database().getUserBooks(shelf),
+              future: ShelfDB().displayBooks(shelf),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                     return snapshot.data;
-                  
-                  
                 } else if (snapshot.hasError) {
                   return Text("${snapshot.error}");
                 }

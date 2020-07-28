@@ -8,7 +8,7 @@ import 'package:book_app/models/api.dart';
 
 class ShelfWidgets {
   Future<Widget> shelf(context, shelf) async {
-    Book books = await Api().fetchBooks(value);
+    //Book books = await Api().fetchBooks(value);
 
     List<Container> shelfList=[];
 

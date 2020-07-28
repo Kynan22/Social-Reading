@@ -1,10 +1,10 @@
 import 'package:book_app/models/database/shelf_db.dart';
 import 'package:book_app/screens/reading/components/add_shelf.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'reading_shelf.dart';
 import 'default_shelf.dart';
 import 'add_shelf.dart';
-import '../../../models/database.dart';
 
 class Shelves {
 
@@ -14,8 +14,8 @@ class Shelves {
     List<Container> list=[];
 
     return FutureBuilder<dynamic>(
-      future: ShelfDB().getShelves(context),
-      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+      future: ShelfDB().getShelfList(context),
+      builder: ( context, snapshot) {
         if (snapshot.hasError)
           return new Text('Error: ${snapshot.error}');
         switch (snapshot.connectionState) {
