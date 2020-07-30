@@ -122,9 +122,9 @@ class Database{
 
   }
 
-  removeBook(context, collection, isbn) async{
+  removeBook(context, shelf, isbn) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    final CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection(collection);
+    final CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection(shelf);
     Navigator.pop(context);
     await dbRef.document(isbn).delete();
     

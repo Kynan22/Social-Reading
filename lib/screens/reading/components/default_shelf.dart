@@ -1,4 +1,5 @@
 import 'package:book_app/models/database/shelf_db.dart';
+import 'package:book_app/screens/reading/components/widgets/shelf_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 import 'package:flutter/rendering.dart';
@@ -34,7 +35,7 @@ class Default {
                   ),
                   onTap: () => showDialog(
                     context: context,
-                    builder: (BuildContext context) => PopupWidgets().addBook(context, shelf)),
+                    builder: (BuildContext context) => ShelfWidgets().showShelfList(context, shelf)),
                 ),
               ],
             ),
