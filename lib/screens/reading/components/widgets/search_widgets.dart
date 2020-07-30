@@ -1,4 +1,3 @@
-import 'package:book_app/models/database/shelf_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:book_app/classes/book.dart';
