@@ -7,9 +7,6 @@ import 'components/profile.dart';
 import 'components/challenge.dart';
 import 'components/stats.dart';
 
-
-
-
 class AccountPage extends StatefulWidget {
   @override
   _AccountPageState createState() => _AccountPageState();

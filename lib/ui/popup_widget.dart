@@ -4,17 +4,12 @@ import 'package:book_app/models/dbSchema.dart';
 import 'package:book_app/screens/profile/account_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:http/http.dart' as http;
-import 'package:book_app/classes/book.dart';
-import 'dart:convert';
-import 'dart:async' show Future;
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase/firebase.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:book_app/models/global.dart';
 import 'package:book_app/login/root_page.dart';
 import 'package:book_app/models/database.dart';
-import 'package:book_app/models/api.dart';
 
 
 import '../screens/reading/components/widgets/search_widgets.dart';
