@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
-import 'package:flutter/rendering.dart';
 
 import 'components/shelves.dart';
 
@@ -19,13 +18,6 @@ class BookPage extends StatefulWidget {
 }
 
 class _BookPageState extends State<BookPage>{
-  // final firestoreInstance = Firestore.instance;
-  // final FirebaseDatabase _database = FirebaseDatabase.instance;
-  // final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  // final PopupWidgets popupWidget = new PopupWidgets();
-  
-  // //Future userUid;
-  // Future<Book> futureBook;
 
   @override
   void initState() {
@@ -49,11 +41,6 @@ class _BookPageState extends State<BookPage>{
           }
         },        
       ),
-      // child: ListView(
-      //   padding: EdgeInsets.only(top:30),
-      //   //children: null,
-      //   children: Shelves().getList(context),
-      // )
     );
   }
   
