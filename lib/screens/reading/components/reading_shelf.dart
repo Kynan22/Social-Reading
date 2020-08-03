@@ -3,6 +3,7 @@ import 'package:book_app/models/global.dart';
 import 'package:flutter/rendering.dart';
 import 'package:book_app/models/database.dart';
 import 'package:book_app/ui/popup_widget.dart';
+import './widgets/read_widget.dart';
 
 
 class Reading {
@@ -66,9 +67,9 @@ class Reading {
                     ),
                   ),
                   onTap: () {
-                    // showDialog(
-                    //   context: context,
-                    //   builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ));
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) => ReadWidgets().readWidget(context));
                   },
                 ),
                 Container(
