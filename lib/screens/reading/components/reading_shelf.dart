@@ -1,3 +1,4 @@
+import 'package:book_app/screens/reading/components/widgets/shelf_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 import 'package:flutter/rendering.dart';
@@ -53,7 +54,7 @@ class Reading {
                     height: screenHeight*0.25,
                     width: screenWidth*0.3,
                     child: FutureBuilder<StreamBuilder>(
-                      future: Database().getUserReading(),
+                      future: ReadWidgets().fetchRead(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return snapshot.data;

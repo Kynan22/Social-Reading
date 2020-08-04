@@ -191,7 +191,7 @@ class Database{
       },
     );
   }
-  Future<StreamBuilder> getUserReading() async{
+  Future<StreamBuilder> getUserReading() async{     
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
