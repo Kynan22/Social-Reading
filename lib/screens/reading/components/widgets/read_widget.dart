@@ -141,9 +141,14 @@ class ReadWidgets {
                     Container(
                       width: 30,
                       child:TextFormField(
-                        initialValue: ds['progress'].toInt().toString(),
-                      
-                      
+                        initialValue: (ds['progress']*ds['pageCount']).toInt().toString(),
+                        
+                        onFieldSubmitted: (String value) async{
+                          Navigator.pop(context);
+                          showDialog(
+                          context: context,
+                          builder: (BuildContext context) => updateReadProgress(value));
+                        }
                       ),
                     ),
                     Container(
@@ -158,7 +163,7 @@ class ReadWidgets {
                     Container(
                       width: 30,
                       child:TextFormField(
-                        initialValue: ds['progress'].toInt().toString(),
+                        initialValue: ds['pageCount'].toInt().toString(),
                       
                       
                       ),
@@ -180,6 +185,18 @@ class ReadWidgets {
       },
     );
 
+  }
+
+  updateReadProgress(value) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    final CollectionReference dbRef = Firestore.instance.collection('users');
+
+    await dbRef.document(firebaseUser.uid).setData(
+      {
+        'progress': value
+      }
+    );
+    // final databaseReference = Firestore.instance;
   }
 
   Widget readWidget(context){  

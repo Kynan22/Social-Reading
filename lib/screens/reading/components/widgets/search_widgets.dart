@@ -17,7 +17,8 @@ class SearchWidgets {
       item.volumeInfo.imageLinks != null &&
       item.volumeInfo.title != null &&
       item.volumeInfo.authors != null &&
-      item.volumeInfo.publishedDate != null){
+      item.volumeInfo.publishedDate != null &&
+      item.volumeInfo.pageCount != null){
         if(item.volumeInfo.industryIdentifiers.length > 1){
           if(item.volumeInfo.industryIdentifiers[0].toJson()['identifier'].toString().length == 13){
             list.add(Container(

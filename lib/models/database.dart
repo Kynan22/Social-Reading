@@ -62,6 +62,7 @@ class Database{
     var title = book.items[0].volumeInfo.toJson()['title'];
     var authors = book.items[0].volumeInfo.toJson()['authors'];
     var published = book.items[0].volumeInfo.toJson()['publishedDate'];
+    var pageCount = book.items[0].volumeInfo.toJson()['pageCount'];
     // var isbn10 = book.items[0].volumeInfo.industryIdentifiers[0].toJson()['identifier'];
     if(ii.toString().length == 13){
       identifier = book.items[0].volumeInfo.industryIdentifiers[0].toJson()['identifier'];
@@ -87,7 +88,9 @@ class Database{
         'title' : title,
         'authors' : authors,
         'published' : published,
-        'progress' : 0
+        'progress' : 0,
+        'pageCount' : pageCount
+
       }
     ); 
     Navigator.pop(context);
