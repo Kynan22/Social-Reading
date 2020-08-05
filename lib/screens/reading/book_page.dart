@@ -1,3 +1,4 @@
+import 'package:book_app/screens/reading/components/google_ad.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 
@@ -26,22 +27,23 @@ class _BookPageState extends State<BookPage>{
   @override
   Widget build(BuildContext context) {
     IgnorePointer(ignoring: false,);
-    return Container(
-      color: darkGrey,
-      child: FutureBuilder<dynamic>(
-        future: Shelves().getList(context),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return snapshot.data;
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-          else{
-            return CircularProgressIndicator();
-          }
-        },        
-      ),
-    );
+    return GoogleAd();
+    // return Container(
+    //   color: darkGrey,
+    //   child: FutureBuilder<dynamic>(
+    //     future: Shelves().getList(context),
+    //     builder: (context, snapshot) {
+    //       if (snapshot.hasData) {
+    //         return snapshot.data;
+    //       } else if (snapshot.hasError) {
+    //         return Text("${snapshot.error}");
+    //       }
+    //       else{
+    //         return CircularProgressIndicator();
+    //       }
+    //     },        
+    //   ),
+    // );
   }
   
 }
