@@ -13,12 +13,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ReadWidgets {
   Future<StreamBuilder> fetchReadImage() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    
-    //Firestore.instance.collection("users").document(firebaseUser.uid).collection('reading').getDocuments().then((value) {
-      
-      //value.documents[0].data.
-      
-
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -72,12 +66,7 @@ class ReadWidgets {
   }
   Future<StreamBuilder> fetchReadProgress() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    
-    //Firestore.instance.collection("users").document(firebaseUser.uid).collection('reading').getDocuments().then((value) {
-      
-      //value.documents[0].data.
-      
-
+  
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -115,11 +104,6 @@ class ReadWidgets {
 
   Future<StreamBuilder> fetchReadDetails() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
-    
-    //Firestore.instance.collection("users").document(firebaseUser.uid).collection('reading').getDocuments().then((value) {
-      
-      //value.documents[0].data.
-      
 
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
@@ -170,8 +154,6 @@ class ReadWidgets {
                     ),
                   ],
                 )
-                
-                //child: Text((ds['progress']/100).toInt().toString()+" / " ),
                
               );
             }
@@ -196,7 +178,6 @@ class ReadWidgets {
         'progress': value
       }
     );
-    // final databaseReference = Firestore.instance;
   }
 
   Widget readWidget(context){  
