@@ -11,7 +11,7 @@ import 'package:book_app/ui/popup_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ReadWidgets {
-  Future<StreamBuilder> fetchRead() async {
+  Future<StreamBuilder> fetchReadImage() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     
     //Firestore.instance.collection("users").document(firebaseUser.uid).collection('reading').getDocuments().then((value) {
@@ -70,6 +70,117 @@ class ReadWidgets {
     );
 
   }
+  Future<StreamBuilder> fetchReadProgress() async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    
+    //Firestore.instance.collection("users").document(firebaseUser.uid).collection('reading').getDocuments().then((value) {
+      
+      //value.documents[0].data.
+      
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            try{
+              DocumentSnapshot ds = snapshot.data.documents[0];
+              return new Container(
+                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                height: 18,
+                width: 170,
+                child:  LinearProgressIndicator(
+                  value: (ds['progress']).toDouble(),
+                  backgroundColor: Colors.white,
+                  valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
+                ),
+                //child: Text((ds['progress']/100).toString()),
+              );
+            }
+          on RangeError{
+            return new Container(
+
+            );
+          }
+        }
+        
+      },
+    );
+
+  }
+
+  Future<StreamBuilder> fetchReadDetails() async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    
+    //Firestore.instance.collection("users").document(firebaseUser.uid).collection('reading').getDocuments().then((value) {
+      
+      //value.documents[0].data.
+      
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            try{
+              DocumentSnapshot ds = snapshot.data.documents[0];
+              return new Container(
+                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                height: 18,
+                width: 130,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      width: 30,
+                      child:TextFormField(
+                        initialValue: ds['progress'].toInt().toString(),
+                      
+                      
+                      ),
+                    ),
+                    Container(
+                      width: 30,
+                      child:TextFormField(
+                        initialValue: " / ",
+                      
+                      
+                      ),
+                    ),
+                    
+                    Container(
+                      width: 30,
+                      child:TextFormField(
+                        initialValue: ds['progress'].toInt().toString(),
+                      
+                      
+                      ),
+                    ),
+                  ],
+                )
+                
+                //child: Text((ds['progress']/100).toInt().toString()+" / " ),
+               
+              );
+            }
+          on RangeError{
+            return new Container(
+                
+            );
+          }
+        }
+        
+      },
+    );
+
+  }
 
   Widget readWidget(context){  
     var screenWidth = MediaQuery.of(context).size.width;
@@ -90,10 +201,10 @@ class ReadWidgets {
             Row(
               children: <Widget>[
                 Container(
-                  width: screenWidth * 0.4,
+                  width: screenWidth * 0.35,
                   height: screenHeight * 0.25,
                   child: FutureBuilder<StreamBuilder>(
-                    future: fetchRead(),
+                    future: fetchReadImage(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return snapshot.data;
@@ -106,22 +217,46 @@ class ReadWidgets {
                     },        
                   ),
                 ),
-                // Container(
-                //   width: screenWidth * 0.3,
-                //   // child: FutureBuilder<StreamBuilder>(
-                //   //   future: Database().getBookInfo("reading"),
-                //   //   builder: (context, snapshot) {
-                //   //     if (snapshot.hasData) {
-                //   //       return snapshot.data;
-                //   //     } else if (snapshot.hasError) {
-                //   //       return Text("${snapshot.error}");
-                //   //     }
-                //   //     else{
-                //   //       return CircularProgressIndicator();
-                //   //     }
-                //   //   }, 
-                //   // )
-                // ),
+                Container(
+                  width: screenWidth * 0.4,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        
+                        child: FutureBuilder<StreamBuilder>(
+                          future: fetchReadProgress(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return snapshot.data;
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}");
+                            }
+                            else{
+                              return CircularProgressIndicator();
+                            }
+                          }, 
+                        )
+                      ),
+                      Container(
+                        height: 30,
+                        child: FutureBuilder<StreamBuilder>(
+                          future: fetchReadDetails(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return snapshot.data;
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}");
+                            }
+                            else{
+                              return CircularProgressIndicator();
+                            }
+                          }, 
+                        )
+                      )
+                    ],
+                  ),
+                )
+                
               ],
             ),
             Container(

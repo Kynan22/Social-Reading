@@ -54,7 +54,7 @@ class Reading {
                     height: screenHeight*0.25,
                     width: screenWidth*0.3,
                     child: FutureBuilder<StreamBuilder>(
-                      future: ReadWidgets().fetchRead(),
+                      future: ReadWidgets().fetchReadImage(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return snapshot.data;
@@ -75,7 +75,7 @@ class Reading {
                 ),
                 Container(
                   child: FutureBuilder<StreamBuilder>(
-                    future: Database().getUserProgress(),
+                    future: ReadWidgets().fetchReadProgress(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return snapshot.data;

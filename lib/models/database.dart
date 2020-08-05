@@ -191,64 +191,64 @@ class Database{
       },
     );
   }
-  Future<StreamBuilder> getUserReading() async{     
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
-    return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError)
-          return new Text('Error: ${snapshot.error}');
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            return new Text('Loading...');
-          default:
-            try{
-              DocumentSnapshot ds = snapshot.data.documents[0];
-              return new Container(
-                child: GestureDetector(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Image.network(
-                      ds.data['thumbnail'],
-                      fit: BoxFit.fitHeight,
-                      alignment: Alignment.centerLeft,
-                    ),
-                  ),
-                  onTap: () => showDialog(
-                    context: context,
-                    builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
-                ),
-              )
-            );
-          }
-          on RangeError{
-            return new Container(
-                child: GestureDetector(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    child: Center(
-                      child: Text(
-                        "Select a book to begin reading!",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20, 
-                          fontWeight: FontWeight.w900, 
-                          color: mainColour,
-                        ),
-                      ),
-                    ),
-                  ),
-                //   onTap: () => showDialog(
-                //     context: context,
-                //     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
-                //   ),
-              )
-            );
-          }
-        }
-      },
-    );
-  }
+  // Future<StreamBuilder> getUserReading() async{     
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
+  //   return StreamBuilder<QuerySnapshot>(
+  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
+  //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+  //       if (snapshot.hasError)
+  //         return new Text('Error: ${snapshot.error}');
+  //       switch (snapshot.connectionState) {
+  //         case ConnectionState.waiting:
+  //           return new Text('Loading...');
+  //         default:
+  //           try{
+  //             DocumentSnapshot ds = snapshot.data.documents[0];
+  //             return new Container(
+  //               child: GestureDetector(
+  //                 child: Container(
+  //                   padding: EdgeInsets.all(10),
+  //                   child: Image.network(
+  //                     ds.data['thumbnail'],
+  //                     fit: BoxFit.fitHeight,
+  //                     alignment: Alignment.centerLeft,
+  //                   ),
+  //                 ),
+  //                 onTap: () => showDialog(
+  //                   context: context,
+  //                   builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
+  //               ),
+  //             )
+  //           );
+  //         }
+  //         on RangeError{
+  //           return new Container(
+  //               child: GestureDetector(
+  //                 child: Container(
+  //                   padding: EdgeInsets.all(10),
+  //                   child: Center(
+  //                     child: Text(
+  //                       "Select a book to begin reading!",
+  //                       textAlign: TextAlign.center,
+  //                       style: TextStyle(
+  //                         fontSize: 20, 
+  //                         fontWeight: FontWeight.w900, 
+  //                         color: mainColour,
+  //                       ),
+  //                     ),
+  //                   ),
+  //                 ),
+  //               //   onTap: () => showDialog(
+  //               //     context: context,
+  //               //     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "reading", ds.documentID),
+  //               //   ),
+  //             )
+  //           );
+  //         }
+  //       }
+  //     },
+  //   );
+  // }
   Future<StreamBuilder> getAmazonLink(collection, isbn) async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder(
@@ -399,48 +399,48 @@ class Database{
   }
   
 
-  Future<StreamBuilder> getUserProgress() async{
-    var firebaseUser = await FirebaseAuth.instance.currentUser();
-    return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError)
-          return new Text('Error: ${snapshot.error}');
-        switch (snapshot.connectionState) {
-          case ConnectionState.waiting:
-            return new Text('Loading...');
-          default:
-            try{
-              DocumentSnapshot ds = snapshot.data.documents[0];
-              return new Container(
-                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                height: 18,
-                width: 150,
-                child:  LinearProgressIndicator(
-                  value: (ds['progress']).toDouble(),
-                  backgroundColor: lightGrey,
-                  valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
-                ),
-                //child: Text((ds['progress']/100).toString()),
-              );
-            }
-            on RangeError {
-              return new Container(
-                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                height: 18,
-                width: 150,
-                child:  LinearProgressIndicator(
-                  value: 0,
-                  backgroundColor: lightGrey,
-                  valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
-                ),
-                //child: Text((ds['progress']/100).toString()),
-              );
-            }
-        }
-      },
-    );
-  }
+  // Future<StreamBuilder> getUserProgress() async{
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
+  //   return StreamBuilder<QuerySnapshot>(
+  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
+  //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+  //       if (snapshot.hasError)
+  //         return new Text('Error: ${snapshot.error}');
+  //       switch (snapshot.connectionState) {
+  //         case ConnectionState.waiting:
+  //           return new Text('Loading...');
+  //         default:
+  //           try{
+  //             DocumentSnapshot ds = snapshot.data.documents[0];
+  //             return new Container(
+  //               padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+  //               height: 18,
+  //               width: 150,
+  //               child:  LinearProgressIndicator(
+  //                 value: (ds['progress']).toDouble(),
+  //                 backgroundColor: lightGrey,
+  //                 valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
+  //               ),
+  //               //child: Text((ds['progress']/100).toString()),
+  //             );
+  //           }
+  //           on RangeError {
+  //             return new Container(
+  //               padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+  //               height: 18,
+  //               width: 150,
+  //               child:  LinearProgressIndicator(
+  //                 value: 0,
+  //                 backgroundColor: lightGrey,
+  //                 valueColor: new AlwaysStoppedAnimation<Color>(mainColour),//getUserColour()),
+  //               ),
+  //               //child: Text((ds['progress']/100).toString()),
+  //             );
+  //           }
+  //       }
+  //     },
+  //   );
+  // }
   Future<StreamBuilder> getProgress() async{
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder<QuerySnapshot>(
