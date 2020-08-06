@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:book_app/ui/popup_widget.dart';
@@ -5,6 +6,7 @@ import 'dart:async' show Future;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../database.dart';
 
 class ShelfDB {
 
@@ -13,6 +15,21 @@ class ShelfDB {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
 
     await Firestore.instance.collection('users').document(firebaseUser.uid).updateData({'shelves': FieldValue.arrayUnion([shelfName])});
+  }
+
+  deleteShelf(context, shelfName) async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    
+    Firestore.instance.collection('users').document(firebaseUser.uid).updateData({'shelves': FieldValue.arrayRemove([shelfName])});
+
+    Firestore.instance.collection("users").document(firebaseUser.uid).collection(shelfName).getDocuments().then((value) {
+
+      for(var doc in value.documents){
+        Database().removeBook(context, shelfName, doc.documentID, false);
+
+      }
+      
+    });
   }
 
   // Gets shelves array from user document and returns it
@@ -36,6 +53,7 @@ class ShelfDB {
           case ConnectionState.waiting:
             return new Text('Loading...');
           default:
+          
             return new ListView(
               scrollDirection: Axis.horizontal,
               children: snapshot.data.documents.map((DocumentSnapshot document) {

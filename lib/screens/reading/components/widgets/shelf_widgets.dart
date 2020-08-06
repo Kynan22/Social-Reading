@@ -62,7 +62,7 @@ class ShelfWidgets {
                   color: darkGrey,
                   size: 30,
                 ),
-                onTap: () => Database().removeBook(context, shelf, doc.documentID),
+                onTap: () => Database().removeBook(context, shelf, doc.documentID, true),
               ),
             ],
           ),
@@ -111,7 +111,7 @@ class ShelfWidgets {
               ),
             ),
             Container(
-              height: 600,
+              height: 550,
               child: FutureBuilder<Widget>(
                 future: getShelfList(context,shelf),
                 builder: (context, snapshot) {
@@ -126,6 +126,16 @@ class ShelfWidgets {
                 },        
               ),
             ),
+            Container (
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: RaisedButton(
+                color: Colors.red,
+                child: Text(
+                  "Delete Shelf"
+                ),
+                onPressed: () => ShelfDB().deleteShelf(context, shelf),
+              ),
+            )
           ],
         ),
       ),

@@ -27,23 +27,23 @@ class _BookPageState extends State<BookPage>{
   @override
   Widget build(BuildContext context) {
     IgnorePointer(ignoring: false,);
-    return GoogleAd();
-    // return Container(
-    //   color: darkGrey,
-    //   child: FutureBuilder<dynamic>(
-    //     future: Shelves().getList(context),
-    //     builder: (context, snapshot) {
-    //       if (snapshot.hasData) {
-    //         return snapshot.data;
-    //       } else if (snapshot.hasError) {
-    //         return Text("${snapshot.error}");
-    //       }
-    //       else{
-    //         return CircularProgressIndicator();
-    //       }
-    //     },        
-    //   ),
-    // );
+    //return Container(child: GoogleAd());
+    return Container(
+      color: darkGrey,
+      child: FutureBuilder<dynamic>(
+        future: Shelves().getList(context),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return snapshot.data;
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          else{
+            return CircularProgressIndicator();
+          }
+        },        
+      ),
+    );
   }
   
 }

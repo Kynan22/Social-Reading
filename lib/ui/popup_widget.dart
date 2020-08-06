@@ -379,7 +379,7 @@ class PopupWidgets extends StatefulWidget {
                     height: 50, 
                     width: 80,
                     child: RaisedButton(
-                      onPressed: () => Database().removeBook(context, collection, isbn),
+                      onPressed: () => Database().removeBook(context, collection, isbn, true),
                       padding: EdgeInsets.all(5),
                       child: Text("Remove", style: TextStyle(fontSize: 12, color: darkGrey)),
                     )
