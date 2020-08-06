@@ -133,7 +133,9 @@ class ShelfWidgets {
                 child: Text(
                   "Delete Shelf"
                 ),
-                onPressed: () => ShelfDB().deleteShelf(context, shelf),
+                onPressed: () {    
+                  ShelfDB().deleteShelf(context, shelf);
+                }
               ),
             )
           ],
