@@ -1,12 +1,8 @@
-import 'package:book_app/models/database/shelf_db.dart';
-import 'package:book_app/screens/reading/components/widgets/search_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:async' show Future;
 import 'package:book_app/models/global.dart';
-import 'package:book_app/models/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:book_app/ui/popup_widget.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 

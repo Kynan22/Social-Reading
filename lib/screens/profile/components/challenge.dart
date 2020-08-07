@@ -1,6 +1,3 @@
-import 'package:book_app/models/database/shelf_db.dart';
-import 'package:book_app/screens/reading/components/add_shelf.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 
