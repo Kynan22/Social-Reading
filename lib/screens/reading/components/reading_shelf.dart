@@ -1,8 +1,6 @@
-import 'package:book_app/screens/reading/components/widgets/shelf_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 import 'package:flutter/rendering.dart';
-import 'package:book_app/models/database.dart';
 import 'package:book_app/ui/popup_widget.dart';
 import './widgets/read_widget.dart';
 

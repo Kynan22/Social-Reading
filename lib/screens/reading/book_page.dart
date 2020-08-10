@@ -1,4 +1,3 @@
-import 'package:book_app/screens/reading/components/google_ad.dart';
 import 'package:flutter/material.dart';
 import 'package:book_app/models/global.dart';
 
