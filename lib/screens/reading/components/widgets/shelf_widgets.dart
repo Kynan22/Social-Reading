@@ -42,10 +42,7 @@ class ShelfWidgets {
                 width: 100,
                 padding: EdgeInsets.only(top: 5, bottom: 5),
                 child: Image.network(doc.data['thumbnail'], fit: BoxFit.fitHeight,),
-                //child: Image.network(item.volumeInfo.imageLinks.toJson()['thumbnail'].toString(), fit: BoxFit.fitHeight,),
               ),
-              //onTap: () => Database().addBook(context, isbn[x])),
-
               new Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +85,6 @@ class ShelfWidgets {
               child: TextFormField(
                 decoration: new InputDecoration(
                   labelText: "Add Book",
-                  //fillColor: Colors.white,
                   border: new OutlineInputBorder(
                     borderRadius: new BorderRadius.circular(25.0),
                     borderSide: new BorderSide(),
