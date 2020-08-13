@@ -450,46 +450,6 @@ class Database{
   //   return list;
   // }
 
-  
-  // Future<StreamBuilder> getUserBooks2(shelf) async{
-  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   var shelfBooks = await getShelfBooks(shelf);
-  //   return StreamBuilder<QuerySnapshot>(
-  //     stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("books").snapshots(),
-  //     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-  //       if (snapshot.hasError)
-  //         return new Text('Error: ${snapshot.error}');
-  //       switch (snapshot.connectionState) {
-  //         case ConnectionState.waiting:
-  //           return new Text('Loading...');
-  //         default:
-            
-  //           return new ListView(
-  //             scrollDirection: Axis.horizontal,
-  //             children: snapshot.data.documents.map((DocumentSnapshot document) {
-  //               // for (var key in document.data)
-  //               return new Container(
-  //                 child: GestureDetector(
-  //                   child: Container(
-  //                     padding: EdgeInsets.all(10),
-  //                     child: Image.network(
-  //                       document.data['thumbnail'],
-  //                       fit: BoxFit.fitHeight,
-  //                       alignment: Alignment.centerLeft,
-  //                     ),
-  //                   ),
-  //                   onTap: () => showDialog(
-  //                     context: context,
-  //                     builder: (BuildContext context) => PopupWidgets().bookWidget(context, "books",document.documentID)),
-  //                 ),
-                  
-  //               );
-  //             }).toList(),
-  //           );
-  //       }
-  //     },
-  //   );
-  // }
 }
 
 
@@ -531,32 +491,4 @@ class Database{
   //   //   }
   //   // ); 
   //   // Navigator.pop(context);
-  // }
-  
-  // addBookToDb(collection, isbn) async{
-  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   final CollectionReference dbRef = Firestore.instance.collection('users').document(firebaseUser.uid).collection(collection);
-  //   Book book = await loadBook();
-  //   await dbRef.document(isbn).setData(
-  //     {
-  //       //'isbn10' : book.isbn10,
-  //       //'thumbnail' : book.items{vol},
-  //     }
-  //   );
-  // }
-
-  
-  // Future<String> getBook() async {
-  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   final firestoreInstance = Firestore.instance;
-  //   var data = "";
-  //   firestoreInstance.collection("users").document(firebaseUser.uid).collection("items").document("books").get().then((value) {
-  //     data = value.data['thumbnail'];
-  //   });
-  //   return data;
-  // }
-
-  // Future getUserUid() async {
-  //   var firebaseUser = await FirebaseAuth.instance.currentUser();
-  //   return firebaseUser.uid;
   // }
