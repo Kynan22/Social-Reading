@@ -115,11 +115,13 @@ class ReadWidgets{
               DocumentSnapshot ds = snapshot.data.documents[0];
               return new Container(
                 //padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                padding: EdgeInsets.only(left: 20),
                 height: 18,
                 width: 130,
                 child: Row(
                   children: <Widget>[
                     Container(
+                      
                       width: 30,
                       child:TextFormField(
                         initialValue: (ds['progress']*ds['pageCount']).toInt().toString(),
