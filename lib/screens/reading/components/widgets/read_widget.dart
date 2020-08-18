@@ -1,3 +1,4 @@
+import 'package:book_app/screens/reading/book_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:async' show Future;
@@ -6,7 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ReadWidgets {
+class ReadWidgets{
   Future<StreamBuilder> fetchReadImage() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     return StreamBuilder<QuerySnapshot>(
@@ -75,9 +76,9 @@ class ReadWidgets {
             try{
               DocumentSnapshot ds = snapshot.data.documents[0];
               return new Container(
-                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                //padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
                 height: 18,
-                width: 170,
+                width: 120,
                 child:  LinearProgressIndicator(
                   value: (ds['progress']).toDouble(),
                   backgroundColor: Colors.white,
@@ -113,7 +114,7 @@ class ReadWidgets {
             try{
               DocumentSnapshot ds = snapshot.data.documents[0];
               return new Container(
-                padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                //padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
                 height: 18,
                 width: 130,
                 child: Row(
@@ -122,8 +123,7 @@ class ReadWidgets {
                       width: 30,
                       child:TextFormField(
                         initialValue: (ds['progress']*ds['pageCount']).toInt().toString(),
-                        
-                        onFieldSubmitted: (String value) async{
+                        onChanged: (String value) async{
                           Navigator.pop(context);
                           showDialog(
                           context: context,
@@ -134,7 +134,7 @@ class ReadWidgets {
                     Container(
                       width: 30,
                       child:TextFormField(
-                        initialValue: " / ",
+                        initialValue: "   / ",
                       
                       
                       ),
@@ -163,6 +163,52 @@ class ReadWidgets {
       },
     );
 
+  }
+  Future<StreamBuilder> getBookInfo() async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection("users").document(firebaseUser.uid).collection("reading").snapshots(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError)
+          return new Text('Error: ${snapshot.error}');
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return new Text('Loading...');
+          default:
+            try{
+              DocumentSnapshot ds = snapshot.data.documents[0];
+              return new Container(
+                //width: screenWidth * 0.3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Text(ds['title'], style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,),),
+                      //padding: EdgeInsets.only(top: 65),
+                    ),
+                    Container(
+                      child: Text(ds['authors'][0], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                      padding: EdgeInsets.only(top: 5, bottom: 5),
+
+                    ), 
+                    Container(
+                      child: Text("Published "+ds['published'], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
+                      padding: EdgeInsets.only(top: 5, bottom: 10),
+
+                    ),
+                  ],
+                ),
+              );
+            }
+            on RangeError{
+              return new Container(
+                  
+              );
+          }
+        }
+      },
+    );
   }
 
   updateReadProgress(value) async{
@@ -216,6 +262,23 @@ class ReadWidgets {
                   child: Column(
                     children: <Widget>[
                       Container(
+                        height: 100,
+                        padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                        child: FutureBuilder<StreamBuilder>(
+                          future: getBookInfo(),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              return snapshot.data;
+                            } else if (snapshot.hasError) {
+                              return Text("${snapshot.error}");
+                            }
+                            else{
+                              return CircularProgressIndicator();
+                            }
+                          }, 
+                        )
+                      ),
+                      Container(
                         
                         child: FutureBuilder<StreamBuilder>(
                           future: fetchReadProgress(),
@@ -246,7 +309,8 @@ class ReadWidgets {
                             }
                           }, 
                         )
-                      )
+                      ),
+                      
                     ],
                   ),
                 )
