@@ -137,22 +137,16 @@ class ReadWidgets{
                       width: 30,
                       child:TextFormField(
                         initialValue: "   / ",
-                      
-                      
                       ),
                     ),
-                    
                     Container(
                       width: 30,
                       child:TextFormField(
                         initialValue: ds['pageCount'].toInt().toString(),
-                      
-                      
                       ),
                     ),
                   ],
                 )
-               
               );
             }
           on RangeError{
@@ -161,7 +155,6 @@ class ReadWidgets{
             );
           }
         }
-        
       },
     );
 
@@ -192,12 +185,10 @@ class ReadWidgets{
                     Container(
                       child: Text(ds['authors'][0], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                       padding: EdgeInsets.only(top: 5, bottom: 5),
-
                     ), 
                     Container(
                       child: Text("Published "+ds['published'], style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400)),
                       padding: EdgeInsets.only(top: 5, bottom: 10),
-
                     ),
                   ],
                 ),
